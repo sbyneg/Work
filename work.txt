@@ -198,7 +198,7 @@ git blame <file>	以列表形式查看指定文件的历史修改记录
 git remote add origin git@github.com:sbyneg/Work.git  将本地库与远程库连接/origin 代表远程库
 git push -u origin main/master    首次将本地库内容推送到远程库 master代表远程分支
 git remote remove origin  取消本地目录下关联的远程库
-
+git branch  XXXX  查看当前版本库中的所有分支 ，加XXX则是新建分支
 
 本地gitbash 生成公/私钥
 ssh-keygen -t rsa -C "sbyneg@163.com"
