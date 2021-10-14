@@ -1,0 +1,1060 @@
+sql
+-- select * from t_product where  f_product_code="df223652W2"
+-- select * from t_order where f_user_id in ("11437808","11437809","11437810","11437811","11437812")
+
+-- 商品收益挖矿时间
+select  t.f_product_id,(select f_product_name from t_product where f_product_code = "df110753I5") 商品名称,
+(select FROM_UNIXTIME(t.f_first_exec_time/1000,'%Y-%m-%d %H:%i:%s')) 第一次挖矿时间,
+(select FROM_UNIXTIME(t.f_exec_time/1000,'%Y-%m-%d %H:%i:%s')) 最新挖矿时间,
+(select FROM_UNIXTIME(t.f_income_time/1000,'%Y-%m-%d %H:%i:%s')) 收益时间,
+(select FROM_UNIXTIME(t.f_end_time/1000,'%Y-%m-%d %H:%i:%s')) 项目关闭时间
+from t_product_time t
+where  t.f_product_id="df110753I5" /* and p.f_product_code = t.f_product_id */
+			
+select  tt.f_product_id,tp.f_product_name
+from t_product_time tt,t_product tp
+where  tt.f_product_id == tp.f_product_code
+-- 修改挖矿时间
+update t_product_time set f_first_exec_time=(select UNIX_TIMESTAMP('2020-09-27 16:20:00')*1000),
+f_exec_time=(select UNIX_TIMESTAMP('2020-09-27 16:20:00')*1000)
+where f_product_id="df110753I5";
+commit;
+-- 修改收益时间
+update t_product_time set f_income_time=(select UNIX_TIMESTAMP('2020-09-27 17:00:00')*1000)
+where f_product_id="df110753I5";
+commit;
+
+
+select UNIX_TIMESTAMP('2020-09-07 12:00:10')*1000  as tim;
+
+
+select wt.* from workflow_template wt WHERE  wt.group_id in (select DISTINCT id from workflow_template_group where  status="Normal" ) and wt.status="Normal"
+
+select * from  workflow_template where uuid="1e48ee4ac8e157cabf48c681326b3c8d"
+select * from  workflow_runtime where uuid="1e48ee4ac8e157cabf48c681326b3c8d"
+select * from  workflow_runtime where uuid in ("1e48ee4ac8e157cabf48c681326b3c8d","a732e8d41699530f9772a6baa171ccc1","a732e8d41699530f9772a6baa171ccc1","58d9fff042b856e88c0e88ce513a5a8c","5203edc432a455d98d21c6299bd2d80a")
+--workflow_runtime
+
+delete from process_runtime where user_id='102383'
+
+select * from workflow_template wt where wt.group_id in (select wtg.id from  workflow_template_group wtg where wtg.user_id='1000001')
+select distinct wt.group_id  from workflow_template wt where wt.user_id='1000001' 
+
+
+
+select * from t_subaccount_history where f_user_id="11186030"  order by f_updated_at desc
+select * from t_subaccount_history_v2 where f_user_id="11186030"  order by f_updated_at desc
+select 
+(select FROM_UNIXTIME(1601399230413/1000,'%Y-%m-%d %H:%i:%s')) t1,
+(select FROM_UNIXTIME(1601399040783/1000,'%Y-%m-%d %H:%i:%s')) t2,
+(select FROM_UNIXTIME(1601398570326/1000,'%Y-%m-%d %H:%i:%s')) t3
+from DUAL
+
+
+
+
+
+-- select * from t_product where  f_product_code="df223652W2"
+-- select * from t_order where f_user_id in ("11437808","11437809","11437810","11437811","11437812")
+
+-- 商品收益挖矿时间
+select  t.f_product_id,
+(select f_product_name from t_product where f_product_code = "df014000wK") 商品名称,
+(select FROM_UNIXTIME(t.f_first_exec_time/1000,'%Y-%m-%d %H:%i:%s')) 第一次挖矿时间,
+(select FROM_UNIXTIME(t.f_exec_time/1000,'%Y-%m-%d %H:%i:%s')) 最新挖矿时间,
+(select FROM_UNIXTIME(t.f_income_time/1000,'%Y-%m-%d %H:%i:%s')) 收益时间,
+(select FROM_UNIXTIME(t.f_end_time/1000,'%Y-%m-%d %H:%i:%s')) 项目关闭时间
+from t_product_time t
+where  t.f_product_id = "df014000wK"   /* df153512mQ","df153901TA","df154200k2","df154514gB"  and p.f_product_code = t.f_product_id */
+select 
+select  tt.f_product_id,tp.f_product_name
+from t_product_time tt,t_product tp
+where  tt.f_product_id == tp.f_product_code
+-- 修改挖矿时间
+update t_product_time set 
+f_first_exec_time=(select UNIX_TIMESTAMP('2020-09-29 00:30:00')*1000),
+f_exec_time=(select UNIX_TIMESTAMP('2020-09-29 00:30:00')*1000),
+f_income_time=(select UNIX_TIMESTAMP('2020-09-30 0:50:00')*1000)
+where f_product_id="df014000wK";
+commit;
+-- 修改挖矿时间
+update t_product_time set f_first_exec_time=(select UNIX_TIMESTAMP('2020-09-28 15:00:00')*1000),
+f_exec_time=(select UNIX_TIMESTAMP('2020-09-28 15:00:00')*1000)
+where f_product_id="df014000wK";
+commit;
+-- 修改商品订单创建时间
+update t_order set 
+f_create_time=(select UNIX_TIMESTAMP('2020-09-29 00:20:00')*1000),
+ f_update_time=(select UNIX_TIMESTAMP('2020-09-29 00:20:00')*1000)
+where f_product_id="df014000wK";
+commit;
+-- 查看订单创建时间
+select f_order_id,(select FROM_UNIXTIME(f_create_time/1000,'%Y-%m-%d %H:%i:%s')) dat1,
+(select FROM_UNIXTIME(f_update_time/1000,'%Y-%m-%d %H:%i:%s')) dat2
+from t_order where f_product_id='df014000wK'
+-- 修改收益时间
+update t_product_time set f_income_time=(select UNIX_TIMESTAMP('2020-09-30 00:55:00')*1000)
+where f_product_id="df014000wK";
+commit;
+-- 修改最新挖矿时间
+update t_product_time set f_exec_time=(select UNIX_TIMESTAMP('2020-09-28 23:00:00')*1000)
+where f_product_id="df014000wK";
+commit;
+-- 修改活动结束时间
+update t_product set f_activity_end_time=(select UNIX_TIMESTAMP('2020-09-29 23:00:00')*1000)
+where f_product_code="df014000wK"
+commit;
+
+select UNIX_TIMESTAMP('2020-09-28 18:00:00')*1000  as tim;
+
+select
+(select FROM_UNIXTIME(1601358436248/1000,'%Y-%m-%d %H:%i:%s')) dat1,
+(select FROM_UNIXTIME(1601360040676/1000,'%Y-%m-%d %H:%i:%s')) dat2,
+(select FROM_UNIXTIME(1601359330152/1000,'%Y-%m-%d %H:%i:%s')) dat3,
+(select FROM_UNIXTIME(1601360844838/1000,'%Y-%m-%d %H:%i:%s')) dat4
+from DUAL;
+
+select * from 
+select FROM_UNIXTIME(1601358436248/1000,'%Y-%m-%d %H:%i:%s') dat
+-- 订单表详情
+select tp.f_product_name from t_product tp , select f_product_id from t_order  where f_user_id  in ("12360207","12360208","12360209","12360210","12360211","12360212","12360213","12360214","12360215","12360216") fpd 
+where tp.f_product_code =  fpd
+;
+
+
+-- 商品
+select * from (select f_product_name from t_product where f_product_code in ("df153237pn","df153512mQ","df153901TA","df154200k2","df154514gB")) fpn
+
+
+-- 商品收益挖矿时间
+select  t.f_product_id,
+(select FROM_UNIXTIME(t.f_first_exec_time/1000,'%Y-%m-%d %H:%i:%s')) 第一次挖矿时间,
+(select FROM_UNIXTIME(t.f_exec_time/1000,'%Y-%m-%d %H:%i:%s')) 最新挖矿时间,
+(select FROM_UNIXTIME(t.f_income_time/1000,'%Y-%m-%d %H:%i:%s')) 收益时间,
+(select FROM_UNIXTIME(t.f_end_time/1000,'%Y-%m-%d %H:%i:%s')) 项目关闭时间
+from t_product_time t,t_product tp
+where  t.f_product_id   in ("df153237pn","df153512mQ","df153901TA","df154200k2","df154514gB")
+
+
+
+/*查询所有app名称所启用系统*/
+select sa.id, sa.app_icon,sa.name,sa.home_page ,sa.status from sso_app sa where sa.status=0 and sa.delete_time=0 ORDER BY sa.id
+
+-- 在sso_app_user表。由其系统有权限的用户在【用户管理】中增了另一个无权限的用户后有登录权限，添加的用户不在【系统接入】的管理员中显示
+select sap.id, sap.app_icon,sap.name,sap.home_page from sso_app sap ,sso_app_user sau
+ where  (sau.user_id=20 and sau.status=0 and sau.delete_time=0) and (sap.id=sau.app_id 
+and sap.status=0 and sap.delete_time=0)  
+UNION
+-- 我无管理员角色但是系统设置了“无需权限控制”
+select id, app_icon,name,home_page from sso_app  where status=0 and delete_time=0 and permission_type=0
+-- 我有管理员角色的系统
+UNION (select DISTINCT manage_app_id as id ,app_icon,name,home_page from (select uam.id,uam.user_id,uam.user_name,uam.role_id,
+uar.role_name,sa.name,uam.manage_app_id,uam.status ,sa.home_page,sa.app_icon
+from upm_app_manager uam,sso_app sa ,upm_app_role uar where uam.user_id=20  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id and uar.delete_time=0 
+ORDER BY uam.manage_app_id) mai) ORDER BY id
+
+/*查询用户ID*/
+select sus.id, sus.name_zh,sus.name_en, sus.name_display from sso_user sus where sus.name_zh='李望'
+
+
+/*查询我管理的系统及角色详细*/
+select uam.id,uam.user_id,uam.user_name,uam.manage_app_id,sa.name,uam.role_id,
+uar.role_name,uam.status 
+from upm_app_manager uam,sso_app sa ,upm_app_role uar where uam.user_id=20  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id and uar.delete_time=0  and uar.status=0
+ORDER BY uam.manage_app_id
+
+
+-- 查询我管理的系统
+select DISTINCT manage_app_id,app_icon,name,home_page from (select uam.id,uam.user_id,uam.user_name,uam.role_id,
+uar.role_name,sa.name,uam.manage_app_id,uam.status ,sa.home_page,sa.app_icon
+from upm_app_manager uam,sso_app sa ,upm_app_role uar where uam.user_id=20  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id 
+and uar.delete_time=0  and uar.status=0 ORDER BY uam.manage_app_id) mai ORDER BY manage_app_id
+
+
+/*查询角色id和名称*/
+select uar.id,uar.app_id, uar.role_key,uar.role_name from upm_app_role uar where status=0
+
+
+/*查询我需要什么权限管理*/
+-- 有效的系统名称/roles/superuser-list
+select distinct urp.role_id,uar.role_key,uar.role_name,urp.app_id,sa.name from
+upm_app_rel_role_permission urp,
+(select uap.app_id ,uap.id from upm_app_permission uap where uap.url="/applications/settings" and uap.status=0 and uap.delete_time=0) uai,
+upm_app_role uar,
+sso_app sa
+where urp.app_id=uai.app_id 
+and urp.permission_id=uai.id
+and urp.delete_time=0
+and urp.status=0
+and uar.id=urp.role_id
+and uar.delete_time=0
+and uar.status=0
+and sa.id=uai.app_id
+and sa.delete_time=0
+and sa.status=0
+ORDER BY urp.role_id
+
+
+
+
+/*查询我有没有权限管理*/
+select distinct urp.role_id,uar.role_key,uar.role_name,urp.app_id,sa.name from
+upm_app_rel_role_permission urp,
+((select manage_app_id,role_id,user_id from upm_app_manager where user_name="李望" and status=0 and delete_time=0 )
+union
+(select app_id as manage_app_id,role_id,user_id from upm_app_rel_user_role where user_id=20 and status=0 and delete_time=0 )) uam,
+upm_app_rel_user_role uau,
+(select uap.app_id ,uap.id from upm_app_permission uap where uap.url="/api/sso/app/update" and uap.status=0 and uap.delete_time=0) uai,
+upm_app_role uar,
+sso_app sa
+where urp.app_id=uai.app_id 
+and urp.permission_id=uai.id
+and urp.delete_time=0
+and urp.status=0
+and uar.id=urp.role_id
+and uar.app_id=uai.app_id 
+and uar.status=0 
+and uar.delete_time=0
+and sa.id=uai.app_id
+and sa.delete_time=0
+and sa.status=0 
+and uam.role_id=urp.role_id
+and uam.manage_app_id=uai.app_id
+and uau.app_id=uai.app_id 
+and uau.user_id=uam.user_id
+and uau.role_id=urp.role_id
+and uau.delete_time=0
+and uau.status=0
+ORDER BY urp.role_id
+
+
+/*查询我的系统菜单列表*/
+
+select uap.id,uap.parent_id,uap.permission_key,uap.permission_name,uap.url,uap.is_menu
+from upm_app_manager uam,
+upm_app_rel_role_permission urp,
+upm_app_permission uap
+where uam.manage_app_id=10034 and uam.user_id=20 and uam.delete_time=0 
+and urp.role_id=uam.role_id  and uap.id=urp.permission_id order by uap.parent_id ,uap.id
+
+-- 所有禁用系统查询
+select * from sso_app where status=1 and delete_time=0
+-- 所有启用系统查询
+select * from sso_app where status=0 and delete_time=0
+-- 名称模糊查询
+select id,name,home_page,home_callback,app_key,app_zone,status from sso_app where name like "%wa%" and delete_time=0
+select * from sso_app where name like "%*%" and delete_time=0
+select * from sso_app where home_Page like "%htt%" and delete_time=0
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where home_Page like "%1%" and delete_time=0 ORDER BY create_time desc
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where app_zone like "%,%" and delete_time=0 ORDER BY create_time desc
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where status=0 and delete_time=0 ORDER BY create_time desc
+
+select * from sso_app where id=10090
+
+
+-- 查询分配给当前用户当前系统的角色以及其管理员
+select uam.user_id,uam.user_name,uam.manage_app_id,uar.id,uar.role_key,uar.role_name,uar.app_id from upm_app_manager uam,
+ (select * from upm_app_role where status=0 and delete_time = 0 ) uar
+where uam.user_id = 20 and uam.manage_app_id=1 and uam.status=0 and uam.delete_time=0 
+      and uar.id=uam.role_id order by uar.role_name
+uam.user_id = 20 and 
+and app_id= 1 
+SELECT	
+	*
+FROM
+	upm_app_role uar,
+	upm_app_manager uam,
+	sso_app_user sau,
+upm_app_rel_user_role ual
+WHERE
+	sau.user_id = 20 and sau.status=0 and delete_time=0
+AND uar.app_id = sau.app_id
+AND uam.app_id= sau.app_id
+
+
+-- 数据权限列表
+select
+*from upm_app_rel_user_flag uaruf
+inner join `upm_app_flag_option` flagOp
+on uaruf.`app_id`=flagOp.`app_id`
+and uaruf.`flag_id`=flagOp.`flag_id`
+and uaruf.`flag_option_id`=flagOp.`id`
+inner join upm_app_flag flag
+on flag.`app_id`=flagOp.`app_id`
+and flag.`id`=flagOp.`flag_id`
+inner join sso_app_user apuser
+on uaruf.`app_id`=apuser.`app_id`
+and uaruf.`user_id`=apuser.`user_id`
+inner join sso_user u
+on apuser.user_id=u.`id`
+where uaruf.`delete_time`=0
+and flagOp.`delete_time`=0
+and flag.`delete_time`=0
+and apuser.`delete_time`=0
+and uaruf.app_id=10010
+and uaruf.user_id=20
+and uaruf.flag_id=77
+
+-- 外部接口查询管理员是否管理权限
+select count(*) from upm_app_manager uam,upm_app_role uar where 
+uam.user_id=15 and uam.manage_app_id=10009   and uam.status=0 and uam.delete_time=0 
+and (uar.id= uam.role_id and uar.app_id=1 and uar.status=0 and uar.delete_time=0)
+-- 转BLOB类型数据
+select name_Zh,name_Display,employee_Id,name_En,manager_Id,type,manager_Name,Id,hb_User_Id,
+job_Desc,phone,CONVERT(department USING UTF8),job,account,email
+ from sso_user where account='caorunsheng'
+select CONVERT(app_zone USING UTF8) from sso_app where id=1
+-- 查询双因素对应的手机号和邮箱地址
+
+select CONVERT(multifactor_authentication_code USING UTF8) from sso_user where id=88
+
+select su.rowid,su.* from sso_user su where account="201 %$4911 22 01"
+
+delete from sso_user where account="201 %$4911 22 01"
+commit;
+
+
+/*查询所有app名称所启用系统*/
+select sa.id, sa.app_icon,sa.name,sa.home_page ,sa.status from sso_app sa where sa.status=0 and sa.delete_time=0 ORDER BY sa.id
+
+-- 在sso_app_user表。由其系统有权限的用户在【用户管理】中增了另一个无权限的用户后有登录权限，添加的用户不在【系统接入】的管理员中显示
+select sap.id, sap.app_icon,sap.name,sap.home_page from sso_app sap ,sso_app_user sau
+ where  (sau.user_id=20 and sau.status=0 and sau.delete_time=0) and (sap.id=sau.app_id 
+and sap.status=0 and sap.delete_time=0)  
+UNION
+-- 我无管理员角色但是系统设置了“无需权限控制”
+select id, app_icon,name,home_page from sso_app  where status=0 and delete_time=0 and permission_type=0
+-- 我有管理员角色的系统
+UNION (select DISTINCT manage_app_id as id ,app_icon,name,home_page from (select uam.id,uam.user_id,uam.user_name,uam.role_id,
+uar.role_name,sa.name,uam.manage_app_id,uam.status ,sa.home_page,sa.app_icon
+from upm_app_manager uam,sso_app sa ,upm_app_role uar,sso_app_user sau where uam.user_id=20  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id and uar.delete_time=0  and uar.status=0 and sau.user_id=uam.user_id
+and sau.app_id=uam.manage_app_id and sau.status=0 and sau.delete_time=0
+ORDER BY uam.manage_app_id) mai) ORDER BY id
+
+/*查询用户ID*/
+select sus.id, sus.name_zh,sus.name_en, sus.name_display from sso_user sus where sus.name_zh='李望'
+
+
+/*查询我管理的系统及角色详细*/
+select uam.id,uam.user_id,uam.user_name,uam.manage_app_id,sa.name,uam.role_id,
+uar.role_name,uam.status 
+from upm_app_manager uam,sso_app sa ,upm_app_role uar where uam.user_id=20  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id and uar.delete_time=0  and uar.status=0
+ORDER BY uam.manage_app_id
+
+
+-- 查询我管理的系统
+select DISTINCT manage_app_id,app_icon,name,home_page from (select uam.id,uam.user_id,uam.user_name,uam.role_id,
+uar.role_name,sa.name,uam.manage_app_id,uam.status ,sa.home_page,sa.app_icon
+from upm_app_manager uam,sso_app sa ,upm_app_role uar where uam.user_id=88  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id 
+and uar.delete_time=0  and uar.status=0 ORDER BY uam.manage_app_id) mai ORDER BY manage_app_id
+
+
+/*查询角色id和名称*/
+select uar.id,uar.app_id, uar.role_key,uar.role_name from upm_app_role uar where status=0
+
+
+/*查询我需要什么权限管理*/
+-- 有效的系统名称/roles/superuser-list
+select distinct urp.role_id,uar.role_key,uar.role_name,urp.app_id,sa.name from
+upm_app_rel_role_permission urp,
+(select uap.app_id ,uap.id from upm_app_permission uap where uap.url="/api/sso/index/get_app_list" and uap.status=0 and uap.delete_time=0) uai,
+upm_app_role uar,
+sso_app sa
+where urp.app_id=uai.app_id 
+and urp.permission_id=uai.id
+and urp.delete_time=0
+and urp.status=0
+and uar.id=urp.role_id
+and uar.delete_time=0
+and uar.status=0
+and sa.id=uai.app_id
+and sa.delete_time=0
+and sa.status=0
+ORDER BY urp.role_id
+
+
+
+
+/*查询我有没有权限管理*/
+select distinct urp.role_id,uar.role_key,uar.role_name,urp.app_id,sa.name from
+upm_app_rel_role_permission urp,
+((select manage_app_id,role_id,user_id from upm_app_manager where user_name="李望" and status=0 and delete_time=0 )
+union
+(select app_id as manage_app_id,role_id,user_id from upm_app_rel_user_role where user_id=20 and status=0 and delete_time=0 )) uam,
+upm_app_rel_user_role uau,
+(select uap.app_id ,uap.id from upm_app_permission uap where uap.url="/api/sso/index/get_app_list" and uap.status=0 and uap.delete_time=0) uai,
+upm_app_role uar,
+sso_app sa
+where urp.app_id=uai.app_id 
+and urp.permission_id=uai.id
+and urp.delete_time=0
+and urp.status=0
+and uar.id=urp.role_id
+and uar.app_id=uai.app_id 
+and uar.status=0 
+and uar.delete_time=0
+and sa.id=uai.app_id
+and sa.delete_time=0
+and sa.status=0 
+and uam.role_id=urp.role_id
+and uam.manage_app_id=uai.app_id
+and uau.app_id=uai.app_id 
+and uau.user_id=uam.user_id
+and uau.role_id=urp.role_id
+and uau.delete_time=0
+and uau.status=0
+ORDER BY urp.role_id
+
+
+/*查询我的系统菜单列表*/
+
+select uap.id,uap.parent_id,uap.permission_key,uap.permission_name,uap.url,uap.is_menu
+from upm_app_manager uam,
+upm_app_rel_role_permission urp,
+upm_app_permission uap
+where uam.manage_app_id=10034 and uam.user_id=20 and uam.delete_time=0 
+and urp.role_id=uam.role_id  and uap.id=urp.permission_id order by uap.parent_id ,uap.id
+
+-- 用户管理查询=============================================================================================
+-- 以名称查询
+select  sau.*,sur.name_zh from sso_app_user sau ,sso_user sur
+where sau.app_id=1 and 
+sau.status=0 and sau.delete_time=0  
+and sur.id=sau.user_id
+and (sur.name_zh like "%l%" 
+or sur.account like "%l%"
+or sur.name_display like "%l%")
+order by sau.user_id
+
+-- 以邮箱查询
+select  sau.*,sur.name_zh from sso_app_user sau ,sso_user sur
+where sau.app_id=1 and 
+sau.status=0 and sau.delete_time=0  
+and sur.id=sau.user_id
+and sur.email like "%l%" 
+order by sau.user_id
+
+select  uam.* from upm_app_manager uam 
+where uam.manage_app_id=1 and 
+uam.status=0 and uam.delete_time=0 
+-- 角色管理=============================================================================================
+-- 以key查询
+
+
+-- 所有禁用系统查询
+select * from sso_app where status=1 and delete_time=0
+-- 所有启用系统查询
+select * from sso_app where status=0 and delete_time=0
+-- 名称模糊查询
+select id,name,home_page,home_callback,app_key,app_zone,status from sso_app where name like "%wa%" and delete_time=0
+select * from sso_app where name like "%*%" and delete_time=0
+select * from sso_app where home_Page like "%htt%" and delete_time=0
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where home_Page like "%1%" and delete_time=0 ORDER BY create_time desc
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where app_zone like "%,%" and delete_time=0 ORDER BY create_time desc
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where status=0 and delete_time=0 ORDER BY create_time desc
+
+select * from sso_app where id=10090
+
+
+-- 查询分配给当前用户当前系统的角色以及其管理员
+select uam.user_id,uam.user_name,uam.manage_app_id,uar.id,uar.role_key,uar.role_name,uar.app_id from upm_app_manager uam,
+ (select * from upm_app_role where status=0 and delete_time = 0 ) uar
+where uam.user_id = 20 and uam.manage_app_id=1 and uam.status=0 and uam.delete_time=0 
+      and uar.id=uam.role_id order by uar.role_name
+uam.user_id = 20 and 
+and app_id= 1 
+SELECT	
+	*
+FROM
+	upm_app_role uar,
+	upm_app_manager uam,
+	sso_app_user sau,
+upm_app_rel_user_role ual
+WHERE
+	sau.user_id = 20 and sau.status=0 and delete_time=0
+AND uar.app_id = sau.app_id
+AND uam.app_id= sau.app_id
+
+
+
+-- 数据权限列表
+select
+*from upm_app_rel_user_flag uaruf
+inner join `upm_app_flag_option` flagOp
+on uaruf.`app_id`=flagOp.`app_id`
+and uaruf.`flag_id`=flagOp.`flag_id`
+and uaruf.`flag_option_id`=flagOp.`id`
+inner join upm_app_flag flag
+on flag.`app_id`=flagOp.`app_id`
+and flag.`id`=flagOp.`flag_id`
+inner join sso_app_user apuser
+on uaruf.`app_id`=apuser.`app_id`
+and uaruf.`user_id`=apuser.`user_id`
+inner join sso_user u
+on apuser.user_id=u.`id`
+where uaruf.`delete_time`=0
+and flagOp.`delete_time`=0
+and flag.`delete_time`=0
+and apuser.`delete_time`=0
+and uaruf.app_id=10010
+and uaruf.user_id=20
+and uaruf.flag_id=77
+
+-- 外部接口查询管理员是否管理权限
+select count(*) from upm_app_manager uam,upm_app_role uar where 
+uam.user_id=15 and uam.manage_app_id=10009   and uam.status=0 and uam.delete_time=0 
+and (uar.id= uam.role_id and uar.app_id=1 and uar.status=0 and uar.delete_time=0)
+-- 转BLOB类型数据
+select name_Zh,name_Display,employee_Id,name_En,manager_Id,type,manager_Name,Id,hb_User_Id,
+job_Desc,phone,CONVERT(department USING UTF8),job,account,email
+ from sso_user where account='caorunsheng'
+select CONVERT(app_zone USING UTF8) from sso_app where id=1
+-- 查询双因素对应的手机号和邮箱地址
+
+select CONVERT(multifactor_authentication_code USING UTF8) from sso_user where id=88
+
+select su.rowid,su.* from sso_user su where account="201 %$4911 22 01"
+
+delete from sso_user where account="201 %$4911 22 01"
+commit;
+
+select * from v$option
+{"google_auth":"FIOL4TKTCYTB77D4","phone_auth":"17611685392","email_auth":"liwang@huobi.com","phone_country_code":"0086"}
+-- 二期####################################################################################################
+-- 查看登录用户详细信息
+select employee_Id,name_Zh,name_En,account,name_Display,email,CONVERT(department USING UTF8),CONVERT(multifactor_authentication_code USING UTF8),phone,manager_Name,hb_User_Id,type,status,phone_Country_Code,job_Desc 
+from sso_user where account='liwang'
+-- account='20191125003'
+-- homepage查询系统
+select * from sso_app where home_page like "%_%" and status=0 and delete_time=0
+
+
+-- 账号查询服务
+select * from sso_user where status=0 and delete_time=0 and account = "liwang" 
+select * from sso_user where status=0 and delete_time=0 and (name_zh like "%liuyi%" or name_en like "%liuyi%" or name_display like "%liuyi%")
+select * from sso_user where status=0 and delete_time=0 and account = "liwang"
+-- 部门查询服务
+select CONVERT(department USING UTF8) from sso_user where account='zhaiyachao' status=0 and delete_time=0 and CONVERT(department USING UTF8) like "%test%"
+-- 工号查询服务
+select * from sso_user where status=2 and delete_time <>0 and employee_id like "%hb%"
+
+
+-- 毫秒数转化为日期
+select FROM_UNIXTIME(1578553200000/1000,'%Y-%m-%d %H:%i:%s') as date
+select FROM_UNIXTIME(1577159702,'%Y-%m-%d %H:%i:%s') as date
+-- 日期转化为毫秒数
+
+
+update  sso_user_password_history set  create_time=''  where  user_name='liwang'
+
+-- 获取修改密码时间的前6个月并将其转换为毫秒数 ,再更新该时间
+update  sso_user_password_history set  
+create_time=select CONCAT((select UNIX_TIMESTAMP(DATE_FORMAT((SELECT DATE_SUB((select FROM_UNIXTIME(1575611925262/1000,'%Y-%m-%d %H:%i:%s') as date1),INTERVAL 92 day)),'%Y-%m-%d %H:%i:%s'))))*1000
+
+select UNIX_TIMESTAMP(DATE_FORMAT((SELECT DATE_SUB((select FROM_UNIXTIME(1576166399,'%Y-%m-%d %H:%i:%s') as date1),INTERVAL 4 day)),'%Y-%m-%d %H:%i:%s'))
+
+select UNIX_TIMESTAMP(SYSDATE())
+select (select UNIX_TIMESTAMP('2020-01-09 15:00:00'))*1000
+-- date转字符串
+select DATE_FORMAT(SYSDATE(),'%Y-%m-%d %H:%i:%s')  from dual 
+-- 外部接口 查询用户详细信息
+select sur.* from sso_user sur,sso_department sd where sur.id= and sur.
+
+
+
+DELETE from sso_user_favourite where user_id='1002460';
+
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109001','memdingdingsync1','HB0109001','20200109101','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109002','memdingdingsync2','HB0109002','20200109102','1','1578553200000','1578553200000',15);
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109003','memdingdingsync3','HB0109003','20200109103','1','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109004','memdingdingsync4','HB0109004','20200109104','0','1578553200000','1578553200000',15);
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109005','memdingdingsync5','HB0109005','20200109105','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109006','memdingdingsync6','HB0109006','20200109106','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109007','memdingdingsync7','HB0109007','20200109107','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109008','memdingdingsync8','HB0109008','20200109108','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109009','memdingdingsync9','HB0109009','20200109109','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109010','memdingdingsync10','HB0109010','20200109110','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109011','memdingdingsync11','HB0109011','20200109111','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109012','memdingdingsync12','HB0109012','20200109112','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109013','memdingdingsync13','HB0109013','20200109113','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109014','memdingdingsync14','HB0109014','20200109114','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109015','memdingdingsync15','HB0109015','20200109115','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109016','memdingdingsync16','HB0109016','20200109116','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109017','memdingdingsync17','HB0109017','20200109117','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109018','memdingdingsync18','HB0109018','20200109118','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109019','memdingdingsync19','HB0109019','20200109119','0','1578553200000','1578553200000','0');
+INSERT INTO sec_sso_upm.sso_user_dingding (`id`, `name`, `employee_id`, `dingding_uid`, `status`, `create_time`, `update_time`, `delete_time`) VALUES ('20200109020','memdingdingsync20','HB0109020','20200109120','0','1578553200000','1578553200000','0');
+commit;
+TRUNCATE TABLE sec_sso_upm.sso_user_dingding;
+delete from sso_user_dingding;
+
+select su.* from sso_user su,sso_user_dingding sud where su.employee_id=sud.employee_id
+ in ('HB2191','HB2692','HB0604','HB03105','HB2700','HB0848','HB03106','HB2529')
+-- hbuidsame1
+select * from sso_user_dingding where status=0 and delete_time=0 
+and employee_id in ('HB03137','HB2149','HB2929','HB2945','HB03147','HB03146','HB2366','HB1660') ORDER BY employee_id
+
+select * from sso_user where
+employee_id in ('HB03137','HB2149','HB2929','HB2945','HB03147','HB03146','HB2366','HB1660') ORDER BY employee_id
+-- hbuidsame2
+select * from sso_user_dingding where  employee_id in 
+('HB0120','HB03078','HB03157','HB03183','HB03190','HB03207','HB1380','HB2192','HB2575','HB2957','HB2967','HB3011') 
+ORDER BY employee_id
+
+select * from sso_user where id='1103207'
+
+
+
+select * from sso_user where account in ('admin11','admin22','admin33','admin44','xunjianfeng','zhengchen','gaoli','yukuiyun')
+
+
+select * from sso_user where account like 'wen%'
+
+update upm_app_rel_role_flag set delete_time=157862867 where role_id=1
+
+
+--日期毫秒互转
+select UNIX_TIMESTAMP('2020-05-31 23:59:59')*1000  as tim;
+
+select UNIX_TIMESTAMP(NOW()) * 1000;
+
+/*查询所有app名称所启用系统*/
+select sa.id, sa.app_icon,sa.name,sa.home_page ,sa.status from sso_app sa where sa.status=0 and sa.delete_time=0 ORDER BY sa.id
+
+-- 在sso_app_user表。由其系统有权限的用户在【用户管理】中增了另一个无权限的用户后有登录权限，添加的用户不在【系统接入】的管理员中显示
+select sap.id, sap.app_icon,sap.name,sap.home_page from sso_app sap ,sso_app_user sau
+ where  (sau.user_id=20 and sau.status=0 and sau.delete_time=0) and (sap.id=sau.app_id 
+and sap.status=0 and sap.delete_time=0)  
+UNION
+-- 我无管理员角色但是系统设置了“无需权限控制”
+select id, app_icon,name,home_page from sso_app  where status=0 and delete_time=0 and permission_type=0
+-- 我有管理员角色的系统
+UNION (select DISTINCT manage_app_id as id ,app_icon,name,home_page from (select uam.id,uam.user_id,uam.user_name,uam.role_id,
+uar.role_name,sa.name,uam.manage_app_id,uam.status ,sa.home_page,sa.app_icon
+from upm_app_manager uam,sso_app sa ,upm_app_role uar,sso_app_user sau where uam.user_id=20  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id and uar.delete_time=0  and uar.status=0 and sau.user_id=uam.user_id
+and sau.app_id=uam.manage_app_id and sau.status=0 and sau.delete_time=0
+ORDER BY uam.manage_app_id) mai) ORDER BY id
+
+/*查询用户ID*/
+select sus.id, sus.name_zh,sus.name_en, sus.name_display from sso_user sus where sus.name_zh='李望'
+
+
+/*查询我管理的系统及角色详细*/
+select uam.id,uam.user_id,uam.user_name,uam.manage_app_id,sa.name,uam.role_id,
+uar.role_name,uam.status 
+from upm_app_manager uam,sso_app sa ,upm_app_role uar where uam.user_id=20  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id and uar.delete_time=0  and uar.status=0
+ORDER BY uam.manage_app_id
+
+
+-- 查询我管理的系统
+select DISTINCT manage_app_id,app_icon,name,home_page from (select uam.id,uam.user_id,uam.user_name,uam.role_id,
+uar.role_name,sa.name,uam.manage_app_id,uam.status ,sa.home_page,sa.app_icon
+from upm_app_manager uam,sso_app sa ,upm_app_role uar where uam.user_id=88  and uam.delete_time = 0 and uam.status=0
+and sa.id=uam.manage_app_id and sa.delete_time=0 and  sa.status=0 and uar.id=uam.role_id 
+and uar.delete_time=0  and uar.status=0 ORDER BY uam.manage_app_id) mai ORDER BY manage_app_id
+
+
+/*查询角色id和名称*/
+select uar.id,uar.app_id, uar.role_key,uar.role_name from upm_app_role uar where status=0
+
+
+/*查询我需要什么权限管理*/
+-- 有效的系统名称/roles/superuser-list
+select distinct urp.role_id,uar.role_key,uar.role_name,urp.app_id,sa.name from
+upm_app_rel_role_permission urp,
+(select uap.app_id ,uap.id from upm_app_permission uap where uap.url="/api/sso/index/get_app_list" and uap.status=0 and uap.delete_time=0) uai,
+upm_app_role uar,
+sso_app sa
+where urp.app_id=uai.app_id 
+and urp.permission_id=uai.id
+and urp.delete_time=0
+and urp.status=0
+and uar.id=urp.role_id
+and uar.delete_time=0
+and uar.status=0
+and sa.id=uai.app_id
+and sa.delete_time=0
+and sa.status=0
+ORDER BY urp.role_id
+
+
+
+
+/*查询我有没有权限管理*/
+select distinct urp.role_id,uar.role_key,uar.role_name,urp.app_id,sa.name from
+upm_app_rel_role_permission urp,
+((select manage_app_id,role_id,user_id from upm_app_manager where user_name="李望" and status=0 and delete_time=0 )
+union
+(select app_id as manage_app_id,role_id,user_id from upm_app_rel_user_role where user_id=20 and status=0 and delete_time=0 )) uam,
+upm_app_rel_user_role uau,
+(select uap.app_id ,uap.id from upm_app_permission uap where uap.url="/api/sso/index/get_app_list" and uap.status=0 and uap.delete_time=0) uai,
+upm_app_role uar,
+sso_app sa
+where urp.app_id=uai.app_id 
+and urp.permission_id=uai.id
+and urp.delete_time=0
+and urp.status=0
+and uar.id=urp.role_id
+and uar.app_id=uai.app_id 
+and uar.status=0 
+and uar.delete_time=0
+and sa.id=uai.app_id
+and sa.delete_time=0
+and sa.status=0 
+and uam.role_id=urp.role_id
+and uam.manage_app_id=uai.app_id
+and uau.app_id=uai.app_id 
+and uau.user_id=uam.user_id
+and uau.role_id=urp.role_id
+and uau.delete_time=0
+and uau.status=0
+ORDER BY urp.role_id
+
+
+/*查询我的系统菜单列表*/
+
+select uap.id,uap.parent_id,uap.permission_key,uap.permission_name,uap.url,uap.is_menu
+from upm_app_manager uam,
+upm_app_rel_role_permission urp,
+upm_app_permission uap
+where uam.manage_app_id=10034 and uam.user_id=20 and uam.delete_time=0 
+and urp.role_id=uam.role_id  and uap.id=urp.permission_id order by uap.parent_id ,uap.id
+
+-- 用户管理查询=============================================================================================
+-- 以名称查询
+select  sau.*,sur.name_zh from sso_app_user sau ,sso_user sur
+where sau.app_id=1 and 
+sau.status=0 and sau.delete_time=0  
+and sur.id=sau.user_id
+and (sur.name_zh like "%l%" 
+or sur.account like "%l%"
+or sur.name_display like "%l%")
+order by sau.user_id
+
+-- 以邮箱查询
+select  sau.*,sur.name_zh from sso_app_user sau ,sso_user sur
+where sau.app_id=1 and 
+sau.status=0 and sau.delete_time=0  
+and sur.id=sau.user_id
+and sur.email like "%l%" 
+order by sau.user_id
+
+select  uam.* from upm_app_manager uam 
+where uam.manage_app_id=1 and 
+uam.status=0 and uam.delete_time=0 
+-- 角色管理=============================================================================================
+-- 以key查询
+
+
+-- 所有禁用系统查询
+select * from sso_app where status=1 and delete_time=0
+-- 所有启用系统查询
+select * from sso_app where status=0 and delete_time=0
+-- 名称模糊查询
+select id,name,home_page,home_callback,app_key,app_zone,status from sso_app where name like "%wa%" and delete_time=0
+select * from sso_app where name like "%*%" and delete_time=0
+select * from sso_app where home_Page like "%htt%" and delete_time=0
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where home_Page like "%1%" and delete_time=0 ORDER BY create_time desc
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where app_zone like "%,%" and delete_time=0 ORDER BY create_time desc
+select home_callback,delete_time,name,app_key,id,home_Page,app_zone,status from sso_app where status=0 and delete_time=0 ORDER BY create_time desc
+
+select * from sso_app where id=10090
+
+
+-- 查询分配给当前用户当前系统的角色以及其管理员
+select uam.user_id,uam.user_name,uam.manage_app_id,uar.id,uar.role_key,uar.role_name,uar.app_id from upm_app_manager uam,
+ (select * from upm_app_role where status=0 and delete_time = 0 ) uar
+where uam.user_id = 20 and uam.manage_app_id=1 and uam.status=0 and uam.delete_time=0 
+      and uar.id=uam.role_id order by uar.role_name
+uam.user_id = 20 and 
+and app_id= 1 
+SELECT	
+	*
+FROM
+	upm_app_role uar,
+	upm_app_manager uam,
+	sso_app_user sau,
+upm_app_rel_user_role ual
+WHERE
+	sau.user_id = 20 and sau.status=0 and delete_time=0
+AND uar.app_id = sau.app_id
+AND uam.app_id= sau.app_id
+
+
+
+-- 数据权限列表
+select
+*from upm_app_rel_user_flag uaruf
+inner join `upm_app_flag_option` flagOp
+on uaruf.`app_id`=flagOp.`app_id`
+and uaruf.`flag_id`=flagOp.`flag_id`
+and uaruf.`flag_option_id`=flagOp.`id`
+inner join upm_app_flag flag
+on flag.`app_id`=flagOp.`app_id`
+and flag.`id`=flagOp.`flag_id`
+inner join sso_app_user apuser
+on uaruf.`app_id`=apuser.`app_id`
+and uaruf.`user_id`=apuser.`user_id`
+inner join sso_user u
+on apuser.user_id=u.`id`
+where uaruf.`delete_time`=0
+and flagOp.`delete_time`=0
+and flag.`delete_time`=0
+and apuser.`delete_time`=0
+and uaruf.app_id=10010
+and uaruf.user_id=20
+and uaruf.flag_id=77
+
+-- 外部接口查询管理员是否管理权限
+select count(*) from upm_app_manager uam,upm_app_role uar where 
+uam.user_id=15 and uam.manage_app_id=10009   and uam.status=0 and uam.delete_time=0 
+and (uar.id= uam.role_id and uar.app_id=1 and uar.status=0 and uar.delete_time=0)
+-- 转BLOB类型数据
+select name_Zh,name_Display,employee_Id,name_En,manager_Id,type,manager_Name,Id,hb_User_Id,
+job_Desc,phone,CONVERT(department USING UTF8),job,account,email
+ from sso_user where account='caorunsheng'
+select CONVERT(app_zone USING UTF8) from sso_app where id=1
+-- 查询双因素对应的手机号和邮箱地址
+
+select CONVERT(multifactor_authentication_code USING UTF8) from sso_user where id=88
+
+select su.rowid,su.* from sso_user su where account="201 %$4911 22 01"
+
+delete from sso_user where account="201 %$4911 22 01"
+commit;
+
+select * from v$option
+{"google_auth":"FIOL4TKTCYTB77D4","phone_auth":"17611685392","email_auth":"liwang@huobi.com","phone_country_code":"0086"}
+-- 二期####################################################################################################
+-- 查看登录用户详细信息
+select employee_Id,name_Zh,name_En,account,name_Display,email,CONVERT(department USING UTF8),CONVERT(multifactor_authentication_code USING UTF8),phone,manager_Name,hb_User_Id,type,status,phone_Country_Code,job_Desc 
+from sso_user where account='liwang'
+-- account='20191125003'
+-- homepage查询系统
+select * from sso_app where home_page like "%_%" and status=0 and delete_time=0
+
+
+-- 账号查询服务
+select * from sso_user where status=0 and delete_time=0 and account = "liwang" 
+select * from sso_user where status=0 and delete_time=0 and (name_zh like "%liuyi%" or name_en like "%liuyi%" or name_display like "%liuyi%")
+select * from sso_user where status=0 and delete_time=0 and account = "liwang"
+-- 部门查询服务
+select CONVERT(department USING UTF8) from sso_user where account='zhaiyachao' status=0 and delete_time=0 and CONVERT(department USING UTF8) like "%test%"
+-- 工号查询服务
+select * from sso_user where status=2 and delete_time <>0 and employee_id like "%hb%"
+
+
+-- 毫秒数转化为日期
+select FROM_UNIXTIME(1578553200000/1000,'%Y-%m-%d %H:%i:%s') as date
+select FROM_UNIXTIME(1577159702,'%Y-%m-%d %H:%i:%s') as date
+-- 日期转化为毫秒数
+
+
+update  sso_user_password_history set  create_time=''  where  user_name='liwang'
+
+-- 获取修改密码时间的前6个月并将其转换为毫秒数 ,再更新该时间
+update  sso_user_password_history set  
+create_time=select CONCAT((select UNIX_TIMESTAMP(DATE_FORMAT((SELECT DATE_SUB((select FROM_UNIXTIME(1575611925262/1000,'%Y-%m-%d %H:%i:%s') as date1),INTERVAL 92 day)),'%Y-%m-%d %H:%i:%s'))))*1000
+
+select UNIX_TIMESTAMP(DATE_FORMAT((SELECT DATE_SUB((select FROM_UNIXTIME(1576166399,'%Y-%m-%d %H:%i:%s') as date1),INTERVAL 4 day)),'%Y-%m-%d %H:%i:%s'))
+
+select UNIX_TIMESTAMP(SYSDATE())
+select (select UNIX_TIMESTAMP('2020-01-09 15:00:00'))*1000
+-- date转字符串
+select DATE_FORMAT(SYSDATE(),'%Y-%m-%d %H:%i:%s')  from dual 
+-- 外部接口 查询用户详细信息
+select sur.* from sso_user sur,sso_department sd where sur.id= and sur.
+
+--日期毫秒互转
+select UNIX_TIMESTAMP('2020-06-12 10:53:30')*1000  as tim;
+
+select UNIX_TIMESTAMP(NOW()) * 1000;
+
+
+select * from sso_user where name_zh in ('李三','李四','李五','李六','李七','李八','李九','李十','李廿','李卅','李甲','李杰','吴革','翟亚超','王宇','李望','王欣欣','李比','邓雨晴','刘意希','王广洲','王松茂')
+select * from sso_user where name_zh like '%丰%'
+
+select count(*) from sso_user where name_zh like '%李%' having count
+
+select count(*)  from sso_user where count = 
+
+select name_zh from sso_user where dept_id in (647,648,649,650,651,652)
+
+/*Global站交易数据 global*/
+select 
+uid,name,
+avg_bb_amount 7日日均资产量,
+-- 现货
+round(avg_trade_amount,2) 现货近7日日均交易量,
+round(avg_trade_change_net,2) 现货近7日日均交易量同比30日日均变幅,
+round(avg_trade_month_amount,2) 现货近30日日均交易量,
+trade_half_year_amount 现货交易过去半年每月交易量按自然月,
+month_coin_rate 现货近30日现货交易量占比前5币种名对应占比,
+round(avg_maker_amount,2) 现货近7日日均maker交易量,
+round(avg_taker_amount,2) 现货近7日日均taker交易量,
+round(avg_trade_month_service_fee,5) 现货近30日日均手续费,
+-- 杠杆 --
+round(avg_leverage_amount,2) 杠杆近7日日均交易量,
+round(avg_leverage_change_net,2) 杠杆近7日日均交易量同比30日日均变幅,
+round(avg_leverage_month_amount,2) 杠杆近30日日均交易量,
+leverage_half_year_amount 杠杆交易过去半年每月交易量按自然月,
+round(avg_leverage_month_service_fee,5) 杠杆近30日日均手续费,
+round(avg_leverage_month_loan_interest,5) 杠杆近30日日均借贷利息,
+-- 合约 --
+round(avg_swap_amount,2) 合约近7日日均交易量,
+round(avg_swap_change_net,2) 合约近7日日均交易量同比30日日均变幅,
+round(avg_swap_month_amount,2) 合约近30日日均交易量,
+swap_half_year_amount 合约交易过去半年每月交易量按自然月,
+round(avg_swap_month_service_fee,5) 合约近30日日均手续费,
+-- 盈亏 --
+round(avg_asset_amount,2) 近7日日均总资沉,
+round(avg_asset_change_net,2) 近7日日均总资沉同比30日日均变幅,
+round(avg_usdt_amount,2) 近7日日均稳定币总资沉,
+round(avg_usdt_change_net,2) 近7日日均稳定币总资沉同比30日日均变幅,
+round(avg_btc_amount,2) 近7日日均BTC资沉,
+round(avg_btc_change_net,2) 近7日日均BTC资沉同比30日日均变幅,
+round(avg_ht_amount,2) 近7日日均HT总资沉,
+round(avg_ht_change_net,2) 近7日日均HT总资沉同比30日日均变幅,
+round(dw_diff_amount,2) 近7日币币日均充提差,
+login_times 近7日日均登录次数,
+profit 盈亏额
+from t_uep_syn_revisit_candidate where site_key="global"  and uid=202009006
+
+/*韩国站交易数据 south_korea*/
+select 
+uid,name,
+avg_bb_amount 7日日均资产量,
+round(avg_bb_amount,2) 近7日币币日均总资沉,
+round(avg_bb_change_net,2) 近7日日均币币总资沉同比30日日均变幅,
+round(avg_btc_amount,2) 近7日日均BTC资沉,
+round(avg_btc_change_net,2) 近7日日均BTC资沉同比30日日均变幅,
+round(avg_fiat_amount,2) 近7日法币日均总资沉,
+round(avg_fiat_change_net,2) 近7日日均法币总资沉同比30日日均变幅,
+round(avg_maker_amount,2) 近7日日均maker交易量,
+round(avg_taker_amount,2) 近7日日均taker交易量,
+round(bb_diff_amount,2) 近7日币币日均充提差,
+round(bb_trade_amount,2) 币币交易近7日日均交易量,
+round(bb_trade_change_net,2) 币币交易近7日日均交易量同比30日日均变幅,
+bb_trade_half_year_amount 币币交易过去半年每月交易量按自然月,
+round(bb_trade_month_amount,2) 币币交易近30日日均交易量,
+round(fiat_diff_amount,2) 近7日法币日均充提差,
+round(fiat_trade_amount,2) 法币交易近7日日均交易量,
+round(fiat_trade_change_net,2) 法币交易近7日日均交易量同比30日日均变幅,
+fiat_trade_half_year_amount 法币交易过去半年每月交易量按自然月,
+round(fiat_trade_month_amount,2) 法币交易近30日日均交易量,
+month_coin_rate 近30日币种交易量占比前5币种名对应占比,
+login_times 近7日日均登录次数,
+profit 盈亏额
+from t_uep_syn_revisit_candidate where site_key="south_korea"  and uid=202008004
+
+
+--日本站交易数据
+select uid,name,
+avg_asset_amount 7日日均资产量,
+round(sales_trade_amount,2) 贩卖所近7日日均交易量,
+round(sales_trade_month_amount,2) 贩卖所近30日日均交易量,
+round(avg_trade_amount,2) 交易所近7日日均交易量,
+round(avg_trade_change_net,2) 交易所近7日日均交易量同比30日日均变幅,
+round(avg_trade_month_amount,2) 交易所近30日日均交易量,
+trade_half_year_amount 交易所过去半年每月交易量按自然月,
+round(avg_trade_month_service_fee,5) 交易所交易近30日日均手续费,
+round(avg_asset_amount,2) 近7日日均总资沉近7日币币日均总资沉,
+round(avg_asset_change_net,2) 近7日日均总资沉同比30日日均变幅,
+round(avg_fiat_amount,2) 近7日日均法币资沉,
+round(avg_fiat_change_net,2) 近7日日均法币资沉同比30日日均变幅,
+round(avg_digit_amount,2) 近7日日均数字币资沉,
+round(avg_digit_change_net,2) 近7日日均数字币资沉同比30日日均变幅,
+round(avg_ht_amount,2) 近7日日均HT资沉,
+round(avg_ht_change_net,2) 近7日日均HT资沉同比30日日均变幅,
+month_coin_rate 近30日币种交易量占比前3币种名对应占比,
+round(avg_maker_amount,2) 近7日日均maker交易量,
+round(avg_taker_amount,2) 近7日日均taker交易量,
+round(dw_diff_amount,2) 近7日日均充提差,
+round(last_login_time,2) 用户最后登录日期及时间,
+login_times 近7日日均登录次数,
+profit 盈亏额
+from t_uep_syn_revisit_candidate where site_key="japan"  and uid=202008035
+
+
+select 
+uid,name,
+avg_bb_amount 7日日均资产量,
+avg_bb_amount 近7日币币日均总资沉,
+avg_bb_change_net 近7日日均币币总资沉同比30日日均变幅,
+avg_btc_amount 近7日日均BTC资沉,
+avg_btc_change_net 近7日日均BTC资沉同比30日日均变幅,
+avg_fiat_amount 近7日法币日均总资沉,
+avg_fiat_change_net 近7日日均法币总资沉同比30日日均变幅,
+avg_maker_amount 近7日日均maker交易量,
+avg_taker_amount 近7日日均taker交易量,
+bb_diff_amount 近7日币币日均充提差,
+bb_trade_amount 币币交易近7日日均交易量,
+bb_trade_change_net 币币交易近7日日均交易量同比30日日均变幅,
+bb_trade_half_year_amount 币币交易过去半年每月交易量按自然月,
+bb_trade_month_amount 币币交易近30日日均交易量,
+fiat_diff_amount 近7日法币日均充提差,
+fiat_trade_amount 法币交易近7日日均交易量,
+fiat_trade_change_net 法币交易近7日日均交易量同比30日日均变幅,
+fiat_trade_half_year_amount 法币交易过去半年每月交易量按自然月,
+fiat_trade_month_amount 法币交易近30日日均交易量,
+login_times 近7日日均登录次数,
+month_coin_rate 近30日币种交易量占比前5币种名对应占比
+
+from t_uep_revisit_candidate where site_key="south_korea" and uid=202008001
+
+
+--日期毫秒互转
+select UNIX_TIMESTAMP('2020-09-07 12:00:10')*1000  as tim;
+
+select UNIX_TIMESTAMP(NOW()) * 1000;
+select FROM_UNIXTIME(1597896070000/1000,'%Y-%m-%d %H:%i:%s')
+
+
+--不同时间段内待处理的触达任务个数
+select count(*) from t_uep_sence where (batch_id BETWEEN 20200722 and 20200821) and touch_sence='交叉销售' and site_key='japan' and gmt_deleted=0
+select count(*) from t_uep_sence where (batch_id BETWEEN 20200607 and 20200821) and touch_sence='流失风险' and site_key='south_korea' and gmt_deleted=0
+
+--韩国站待处理触达任务
+select count(*) from t_uep_sence where touch_sence='流失风险' and site_key='south_korea' and gmt_deleted=0
+and status=1
+
+select count(*) from t_uep_sence where touch_sence='放量用户' and site_key='south_korea' and gmt_deleted=0
+and status=1
+
+--韩国站已处理触达任务
+select count(*) from t_uep_sence where touch_sence='流失风险' and site_key='south_korea' and gmt_deleted=0
+and status=3
+
+select count(*) from t_uep_sence where touch_sence='放量用户' and site_key='south_korea' and gmt_deleted=0
+and status=3
+--韩国站待处理反馈
+select count(*) from  t_uep_feedback where site_key='south_korea' and gmt_deleted=0 and status=1
+select count(*) from  t_uep_feedback where site_key='south_korea' and gmt_deleted=0 and status=2
+
+--韩国站待处理需求
+select count(*) from  t_uep_requirement where site_key='south_korea' and gmt_deleted=0 and status=10
+
+--韩国站各渠道反馈情况 论坛/Facebook/Twitter/Kakao/Naver/其他
+select count(*) from t_uep_feedback where site_key='south_korea' and channel='论坛' and gmt_deleted=0
+
+select FROM_UNIXTIME(gmt_created/1000,'%Y-%m-%d %H:%i:%s') as date1 union select FROM_UNIXTIME(gmt_created/1000,'%Y-%m-%d %H:%i:%s') as date1 
+--创建与更新日期
+select customer_feedback_record, (select FROM_UNIXTIME(gmt_created/1000,'%Y-%m-%d %H:%i:%s')) as create1 , 
+(select FROM_UNIXTIME(gmt_updated/1000,'%Y-%m-%d %H:%i:%s') ) as update1 from t_uep_feedback where uid=202008002 ORDER BY update1 desc
+select count(*) from t_uep_revisit_candidate where site_key='south_korea'  and  kyc_level='lv.12'
+
+
+---ef
+select * from t_uep_revisit_candidate where bb_trade_half_year_amount  is NULL and site_key=global
+update t_uep_revisit_candidate set trade_half_year_amount=null where uid=90511150;
+commit;
+update t_uep_revisit_candidate set sync_status=‘N’ where uid=90511150
+

@@ -1,0 +1,475 @@
+UC自动化接口测试工具
+git clone ssh://git@phabricator.huobidev.com:2222/diffusion/749/autotest-uc-tools.git
+
+UC自动化接口测试代码
+git clone ssh://git@phabricator.huobidev.com:2222/diffusion/454/autotest-uc.git
+
+UC自动化接口测试
+git clone ssh://git@phabricator.huobidev.com:2222/source/auto-test-Java.git
+
+==================================================================
+统一账号平台(IAM项目)
+https://www.getpostman.com/collections/d7945a5a4033071c7874
+用户体验平台(UEQ项目)
+https://www.getpostman.com/collections/96b97fcade0952513ab8
+
+==================================================================
+uep项目
+域名
+测试环境：http://ib.test-1.huobiapps.com/demand-library
+正式环境：https://ib.huobiapps.com/pending-visits
+需求文档：http://phabricator.huobidev.com/w/product_design/%E4%BD%93%E9%AA%8C%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/
+接口文档：http://phabricator.huobidev.com/w/uep/api%E6%8E%A5%E5%8F%A3/
+后端提测task：http://phabricator.huobidev.com/T76300
+IAM项目
+域名：
+绑定host：10.154.2.143 sso.huobidev.com
+绑定host：10.154.2.143 i.huobidev.com
+域名：https://sso.huobidev.com/cas
+接口文档：http://phabricator.huobidev.com/w/iam/api/apilist/sso%E9%83%A8%E5%88%86/
+服务器地址：ssh  root@10.154.2.143
+
+CAS日志       tail -f /hbdata/logs/huobi-cas-overlay/cas.log (/root/project/apps/cas)
+
+接口日志    tail -f logs/ops-api-0.0.1-SNAPSHOT.run.log (/root/project/apps/ops-api )
+Liwang@163
+alias topenapi='tail -100f /var/log/huobi/iam/open-api/open-api.log'
+alias topsapi='tail -100f /var/log/huobi/iam/ops/ops-api.log'
+alias tssoservice='tail -100f /var/log/huobi/iam/sso-service/sso-service.log'
+alias tupmservice='tail -100f /var/log/huobi/iam/upm-service/upm-service.log'
+Zhaoding@110
+unalias
+
+==========================================================================================================
+redis-cli
+keys *
+flushall # 全部清除
+Redis的keys命令
+Keys * 查询所有
+keys home 精确查找
+keys h* 模糊查找
+ 
+DEL key
+该命令用于在 key 存在时删除 key。
+ 
+DUMP key
+序列化给定 key ，并返回被序列化的值。
+ 
+EXISTS key
+检查给定 key 是否存在。
+ 
+EXPIRE key seconds
+为给定 key 设置过期时间。
+ 
+EXPIREAT key timestamp
+EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)。
+ 
+PEXPIRE key milliseconds
+设置 key 的过期时间以毫秒计。
+ 
+PEXPIREAT key milliseconds-timestamp
+设置 key 过期时间的时间戳(unix timestamp) 以毫秒计
+ 
+KEYS pattern
+查找所有符合给定模式( pattern)的 key 。
+ 
+MOVE key db
+将当前数据库的 key 移动到给定的数据库 db 当中。
+ 
+PERSIST key
+移除 key 的过期时间，key 将持久保持。
+ 
+PTTL key
+以毫秒为单位返回 key 的剩余的过期时间。
+ 
+TTL key
+以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)。
+ 
+RANDOMKEY
+从当前数据库中随机返回一个 key 。
+ 
+RENAME key newkey
+修改 key 的名称
+ 
+RENAMENX key newkey
+仅当 newkey 不存在时，将 key 改名为 newkey 。
+ 
+TYPE key
+返回 key 所储存的值的类型。
+ 
+Redis字符串命令
+
+1
+SET key value 
+设置指定 key 的值
+2
+GET key 
+获取指定 key 的值。
+3
+GETRANGE key start end 
+返回 key 中字符串值的子字符
+4
+GETSET key value
+将给定 key 的值设为 value ，并返回 key 的旧值(old value)。
+5
+GETBIT key offset
+对 key 所储存的字符串值，获取指定偏移量上的位(bit)。
+6
+MGET key1 [key2..]
+获取所有(一个或多个)给定 key 的值。 
+7
+SETBIT key offset value
+对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。
+8
+SETEX key seconds value
+将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以秒为单位)。
+9
+SETNX key value
+只有在 key 不存在时设置 key 的值。
+10
+SETRANGE key offset value
+用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。 
+11
+STRLEN key
+返回 key 所储存的字符串值的长度。
+12
+MSET key value [key value ...]
+同时设置一个或多个 key-value 对。
+13
+MSETNX key value [key value ...] 
+同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。
+14
+PSETEX key milliseconds value
+这个命令和 SETEX 命令相似，但它以毫秒为单位设置 key 的生存时间，而不是像 SETEX 命令那样，以秒为单位。
+15
+INCR key
+将 key 中储存的数字值增一。
+16
+INCRBY key increment
+将 key 所储存的值加上给定的增量值（increment） 。
+17
+INCRBYFLOAT key increment
+将 key 所储存的值加上给定的浮点增量值（increment） 。 
+18
+DECR key
+将 key 中储存的数字值减一。
+19
+DECRBY key decrement
+key 所储存的值减去给定的减量值（decrement） 。 
+20
+APPEND key value
+如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。 
+1.访问redis根目录 cd /usr/local/redis-2.8.19 
+2.登录redis:redis-cli -h 127.0.0.1 -p 6379 
+3.查看所有key值:keys * 
+4.删除指定索引的值:del key key名称
+5.清空整个 Redis 服务器的数据:flushall 
+
+1.redis根目录调出命令行（cmd）
+2.登录redis：redis-cli -h 127.0.0.1 -p 6379
+3.查看所有key值：keys *
+4.删除指定索引的值：del key
+5.清空整个 Redis 服务器的数据：flushall 
+6.清空当前库中的所有 key：flushdb 
+
+test2清redis
+登录143,进入redis ,select 2 
+
+==========================================================================================================
+a' or 1=1'
+20191125007
+
+增加header
+hb-iam-appid
+hb-iam-targetappid
+==================================================================
+
+
+BRANCH_T144102
+数据库连接
+BPM test-1/2/3（三个测试环境,下同）
+path：master-db.test-1/2/3.sinnet.huobiidc.com
+port：3301/2/3
+username: hbpm_usrc
+password:Ugu0MtauSC9Qo_X9
+
+
+IAM/UPM test-1/2/3（三个测试环境,下同）
+path：master-db.test-1/2/3.sinnet.huobiidc.com
+port：3301/2/3
+username: sec_sso_upm_usrc
+password: HN4reKC_4OsQ0RiZM
+
+UEP test-1/2/3（三个测试环境,下同）
+path：master-db.test-1/2/3.sinnet.huobiidc.com
+port：3301/2/3
+username: sec_uep_usrc
+password: MU17QB_1GY9Q02Je
+
+DeFi数据库
+master-db.test-1/8.sinnet.huobiidc.com
+defi_factory_usrc/Eet7ul3_ele2ka3C
+
+143数据库
+path:10.154.2.143
+port:3306
+username:root
+password:MhxzKhl
+=====================================================================================
+修改个人的“直接主管”在sso_user中将自己的manger_id 和name变更，再按下面清除缓存，
+更新组织架构
+登录143
+redis-cli -h db-test-1.sinnet.huobiidc.com -p 6379
+
+-------------------------------------
+redis-cli -h db-test-20.sinnet.huobiidc.com -p 6379
+db-test-20.sinnet.huobiidc.com:6379> select 13
+----------------------------------------------
+先登录：ssh root@10.154.2.143
+C:\Users\liwang>redis-cli
+127.0.0.1:6379> get a
+(nil)
+127.0.0.1:6379> set name a
+OK
+127.0.0.1:6379> get name
+"a"
+127.0.0.1:6379> exit
+
+C:\Users\liwang>
+
+再选择要删除的： redis-cli -h db-test-20.sinnet.huobiidc.com -p 6379
+再选择要删除的： redis-cli -h redis.test-1.sinnet.huobiidc.com -p 6379
+再：select 13
+再：keys hbpm*
+再：del keyname 
+
+==========================================================================
+MySql登录数据库
+一、MySQL 连接本地数据库，用户名为“root”，密码“123”（注意：“-p”和“123” 之间不能有空格）
+C:\>mysql -h localhost -u root -p123
+二、MySQL 连接远程数据库（192.168.0.201），端口“3306”，用户名为“root”，密码“123”
+C:\>mysql -h 172.16.16.45 -P 3306 -u root -p123
+三、MySQL 连接本地数据库，用户名为“root”，隐藏密码
+C:\>mysql -h localhost -u root -p
+
+Enter password:
+四、MySQL 连接本地数据库，用户名为“root”，指定所连接的数据库为“test”
+C:\>mysql -h localhost -u root -p123 -D test
+
+mysql>select database();
+查看版本 
+mysql>status;
+
+mysql -uhbpm_usrc -hmaster-db.test-1.sinnet.huobiidc.com -pUgu0MtauSC9Qo_X9 -P 3301
+
+show databases;
+
+use database的名称
+===========================================================================
+pycharm激活时host修改
+0.0.0.0 account.jetbrains.com
+0.0.0.0 www.jetbrains.com
+
+pycharm激活时bin下pycharm.votions.exe中添加 
+-javaagent:jar包路径
+邓雨晴，王欣欣
+吴革，翟亚超
+李雷，李望
+刘燚
+所属组为“平台治理部”，在下拉选项中没有
+
+==============================================================================================================
+Phabricator提交BUG流程
+在对应Task中右上“Create Tasek”-"新建内部bug任务"
+填写对应的BUG描述
+提交-提交后
+找到要添加在一起的项目，在右侧菜单选择“Edit related Task”-“Edit Subtasks”。
+
+
+AxureRP9.0.0.3669可用秘钥
+用户名： thisProEdition
+秘钥：PkgeOGle9dSCMXTAczSrTGQZJLcviUJO1kG6onDIH/C68b+AUItWKdbBrmkJsJ0m
+
+T86223
+
+接口没有权限登录的话是因为 sso_app 表中的[app_key]的值更改后没有权限应为sso
+=================================================================================================================
+
+jenkins 开发前端环境发布
+1
+=================================================================================================================
+测试完成后发布任务用(前端发布)
+标题：local-jp-shop-gateway-websocket 改造适合k8s检测可以访问 info接口--已上线
+链接：http://phabricator.huobidev.com/T92577
+
+亚超： 2 个钉钉审批通知，1邮箱审批，1个钉钉抄送
+刘燚：2个邮箱审批，1个钉钉抄送，1个钉钉审批
+欣欣：1 个钉钉审批通知，1个钉钉抄送
+吴革：1 个钉钉审批通知，1个钉钉抄送
+
+====================================================================================================================
+添加服务器登录权限 登录ssh root@10.154.2.143
+转到 /root/.ssh
+编辑文件 authorized_keys 插入新的公钥：
+还要将私钥放到本地(C:\Users\liwang\.ssh)拷贝到git的.ssh目录下（~/.ssh/）注意key文件类型。
+
+在命令行执行“$ ssh-keygen -t rsa -C "yourname@huobi.com",连续回车（不需要密码的情况）得到id_rsa和id_rsa.pub，执行“ssh-add ~/.ssh/id_rsa” 并将公钥内容粘贴到/root/.ssh/authorized_keys中。
+
+Xe883273vO
+====================================================================================================================
+kibana查询日志(bpm test1)
+1.discovery-选择log分支“logstash-applog-sec*”-
+2.
+搜索栏输入“app:hbpm(系统名称)”或
+3.按请求接口查询 
+ “trace_id: ac129f9e5df99da4ef530008b71482b0(取接口返回header中“Huobi-Header-Rid”的值)”
+ 
+kibana查询日志(iam test1)
+
+LOG查询输入 +app:“服务名称” +env_name:“环境名称”      例(+app:"cas"  +env_name:"test-2")
+cas            : 登录相关
+iam-open-api   : 外部接口
+iam-sso-service: 查询数据库服务
+iam-upm-service: 查询数据库服务
+iam-ops-api    : 内部接口
+uep-service    : UEP
+
+
+内部平台涉及的服务
+ssoserivce，upmservice，openapi，cas，opsapi
+===================================================================================
+git diff 不接内容时diff 工作区和暂存区 若暂存区没有内容则diff工作区和版本库
+git diff +内容时(HEAD/版本)  diff 工作区和指定区的内容
+
+手机连vpn
+下载https://fortinet.egnyte.com/dd/rx37DLV2tO/
+安装后
+
+{{open_url}}/api/open/bpm/add_app?Signature=Z9zB6/BGQFXxCQTQ3mSstB1c4ivrs82RzFPxNoX8s0E=&AWSAccessKeyId=y3RWg8aE4al1ulaT6BuQ&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-02-21T12:59:29
+
+=========================================================
+sign的计算方式为：
+String timestamp = System.currentTimeMillis() + "";
+String value = appKey + timestamp;
+String sign = md5Hex(value);
+
+=========================================================
+scrcpy 联接手机
+scrcpy -r file.mp4
+scrcpy -Nr file.mp4
+Zhaiyc20190919!@#$
+
+==============================================================================================
+这是发布的
+http://ops.sinnet.huobiidc.com/project/dev/jobs/dev/fed前端
+
+http://ops.sinnet.huobiidc.com/project/dev/jobs/dev/fed/sinnet 前端
+http://ops.sinnet.huobiidc.com/project/dev/jobs
+http://ops.sinnet.huobiidc.com/project/dev/jobs/k8s_test/sec 后端
+
+
+http://ops.sinnet.huobiidc.com/project/dev/jobs/k8s_test/sec 服务端
+
+http://jenkins.huobidev.com/job/R-D-Center/job/WEB/view/SSO/ 这是前端打包的
+http://jenkins.huobidev.com/job/R-D-Center/job/WEB/view/SSO/ 这是前端打包的
+
+1.先登录上述前端打包地址，选择对应前端的程序包，选择分支，点后面的播放按钮打包
+2.在上述发布地址中找到对应的服务，选择分支，点run now
+
+
+pdf、xls、xlsx、csv、jpg、jpeg、png、zip、word
+==================================================================================================
+python 激活码
+812LFWMRSH-eyJsaWNlbnNlSWQiOiI4MTJMRldNUlNIIiwibGljZW5zZWVOYW1lIjoi5q2j54mIIOaOiOadgyIsImFzc2lnbmVlTmFtZSI6IiIsImFzc2lnbmVlRW1haWwiOiIiLCJsaWNlbnNlUmVzdHJpY3Rpb24iOiIiLCJjaGVja0NvbmN1cnJlbnRVc2UiOmZhbHNlLCJwcm9kdWN0cyI6W3siY29kZSI6IklJIiwiZmFsbGJhY2tEYXRlIjoiMjAxOS0wNC0yMSIsInBhaWRVcFRvIjoiMjAyMC0wNC0yMCJ9LHsiY29kZSI6IkFDIiwiZmFsbGJhY2tEYXRlIjoiMjAxOS0wNC0yMSIsInBhaWRVcFRvIjoiMjAyMC0wNC0yMCJ9LHsiY29kZSI6IkRQTiIsImZhbGxiYWNrRGF0ZSI6IjIwMTktMDQtMjEiLCJwYWlkVXBUbyI6IjIwMjAtMDQtMjAifSx7ImNvZGUiOiJQUyIsImZhbGxiYWNrRGF0ZSI6IjIwMTktMDQtMjEiLCJwYWlkVXBUbyI6IjIwMjAtMDQtMjAifSx7ImNvZGUiOiJHTyIsImZhbGxiYWNrRGF0ZSI6IjIwMTktMDQtMjEiLCJwYWlkVXBUbyI6IjIwMjAtMDQtMjAifSx7ImNvZGUiOiJETSIsImZhbGxiYWNrRGF0ZSI6IjIwMTktMDQtMjEiLCJwYWlkVXBUbyI6IjIwMjAtMDQtMjAifSx7ImNvZGUiOiJDTCIsImZhbGxiYWNrRGF0ZSI6IjIwMTktMDQtMjEiLCJwYWlkVXBUbyI6IjIwMjAtMDQtMjAifSx7ImNvZGUiOiJSUzAiLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiUkMiLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiUkQiLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiUEMiLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiUk0iLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiV1MiLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiREIiLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiREMiLCJmYWxsYmFja0RhdGUiOiIyMDE5LTA0LTIxIiwicGFpZFVwVG8iOiIyMDIwLTA0LTIwIn0seyJjb2RlIjoiUlNVIiwiZmFsbGJhY2tEYXRlIjoiMjAxOS0wNC0yMSIsInBhaWRVcFRvIjoiMjAyMC0wNC0yMCJ9XSwiaGFzaCI6IjEyNzk2ODc3LzAiLCJncmFjZVBlcmlvZERheXMiOjcsImF1dG9Qcm9sb25nYXRlZCI6ZmFsc2UsImlzQXV0b1Byb2xvbmdhdGVkIjpmYWxzZX0=-ti4tUsQISyJF/zfWxSHCr+IcYrX2w24JO5bUZCPIGKSi+IrgQ0RT2uum9n96o+Eob9Z1iQ9nUZ6FJdpEW5g0Exe6sw8fLrWMoLFhtCIvVgQxEEt+M7Z2xD0esmjP1kPKXZyc/i+NCxA2EO2Sec9uifqklBGP1L3xoENAw2QsIWBfttIe6EPWhbS8TIMMr2vF/S3HrN8To5Hj5lwD/t1GHgFK1uWrhsuifAiKcVzqogybzGiR1h2+yNYTMbKxP7uPCcdYMsIyrBNVRGA3IuEJgyGQTQlFbnVQoVUTGPW2tQxprmC464wMjKi40JHh27WzjOHPwgzxDaigwn4Z0EbSpA==-MIIElTCCAn2gAwIBAgIBCTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTE4MTEwMTEyMjk0NloXDTIwMTEwMjEyMjk0NlowaDELMAkGA1UEBhMCQ1oxDjAMBgNVBAgMBU51c2xlMQ8wDQYDVQQHDAZQcmFndWUxGTAXBgNVBAoMEEpldEJyYWlucyBzLnIuby4xHTAbBgNVBAMMFHByb2QzeS1mcm9tLTIwMTgxMTAxMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxcQkq+zdxlR2mmRYBPzGbUNdMN6OaXiXzxIWtMEkrJMO/5oUfQJbLLuMSMK0QHFmaI37WShyxZcfRCidwXjot4zmNBKnlyHodDij/78TmVqFl8nOeD5+07B8VEaIu7c3E1N+e1doC6wht4I4+IEmtsPAdoaj5WCQVQbrI8KeT8M9VcBIWX7fD0fhexfg3ZRt0xqwMcXGNp3DdJHiO0rCdU+Itv7EmtnSVq9jBG1usMSFvMowR25mju2JcPFp1+I4ZI+FqgR8gyG8oiNDyNEoAbsR3lOpI7grUYSvkB/xVy/VoklPCK2h0f0GJxFjnye8NT1PAywoyl7RmiAVRE/EKwIDAQABo4GZMIGWMAkGA1UdEwQCMAAwHQYDVR0OBBYEFGEpG9oZGcfLMGNBkY7SgHiMGgTcMEgGA1UdIwRBMD+AFKOetkhnQhI2Qb1t4Lm0oFKLl/GzoRykGjAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBggkA0myxg7KDeeEwEwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYDVR0PBAQDAgWgMA0GCSqGSIb3DQEBCwUAA4ICAQAF8uc+YJOHHwOFcPzmbjcxNDuGoOUIP+2h1R75Lecswb7ru2LWWSUMtXVKQzChLNPn/72W0k+oI056tgiwuG7M49LXp4zQVlQnFmWU1wwGvVhq5R63Rpjx1zjGUhcXgayu7+9zMUW596Lbomsg8qVve6euqsrFicYkIIuUu4zYPndJwfe0YkS5nY72SHnNdbPhEnN8wcB2Kz+OIG0lih3yz5EqFhld03bGp222ZQCIghCTVL6QBNadGsiN/lWLl4JdR3lJkZzlpFdiHijoVRdWeSWqM4y0t23c92HXKrgppoSV18XMxrWVdoSM3nuMHwxGhFyde05OdDtLpCv+jlWf5REAHHA201pAU6bJSZINyHDUTB+Beo28rRXSwSh3OUIvYwKNVeoBY+KwOJ7WnuTCUq1meE6GkKc4D/cXmgpOyW/1SmBz3XjVIi/zprZ0zf3qH5mkphtg6ksjKgKjmx1cXfZAAX6wcDBNaCL+Ortep1Dh8xDUbqbBVNBL4jbiL3i3xsfNiyJgaZ5sX7i8tmStEpLbPwvHcByuf59qJhV/bZOl8KqJBETCDJcY6O2aqhTUy+9x93ThKs1GKrRPePrWPluud7ttlgtRveit/pcBrnQcXOl1rHq7ByB8CFAxNotRUYL9IF5n3wJOgkPojMy6jetQA5Ogc8Sm7RG6vg1yow==
+
+
+MAKET UI中发布
+1：单击stags 选择应用详情，弹窗选择加号输入tag 分支号构建新版本
+   1-1：刷新号转到“测试test”,单击发布，弹窗内选择+号 在“版本”选择上一步打好的包提交
+2：转到“测试test”,单击发布，弹窗内选择+号 在“版本”选择+呈，输入tag分号提交
+用户名: liwang@huobi.com
+
+密码: Nay14175/Mor54766
+更新后：Sbyneg7389198
+
+网络图片：
+"http://e.hiphotos.baidu.com/image/pic/item/a1ec08fa513d2697e542494057fbb2fb4316d81e.jpg");  
+    mUrls.add("http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg");  
+    mUrls.add("http://h.hiphotos.baidu.com/image/pic/item/7c1ed21b0ef41bd5f2c2a9e953da81cb39db3d1d.jpg");  
+    mUrls.add("http://g.hiphotos.baidu.com/image/pic/item/55e736d12f2eb938d5277fd5d0628535e5dd6f4a.jpg");  
+    mUrls.add("http://e.hiphotos.baidu.com/image/pic/item/4e4a20a4462309f7e41f5cfe760e0cf3d6cad6ee.jpg");  
+    mUrls.add("http://b.hiphotos.baidu.com/image/pic/item/9d82d158ccbf6c81b94575cfb93eb13533fa40a2.jpg");  
+    mUrls.add("http://e.hiphotos.baidu.com/image/pic/item/4bed2e738bd4b31c1badd5a685d6277f9e2ff81e.jpg");    
+    mUrls.add("http://g.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4c87a3add4d52a6059252da61e.jpg");  
+    mUrls.add("http://a.hiphotos.baidu.com/image/pic/item/f2deb48f8c5494ee5080c8142ff5e0fe99257e19.jpg");  
+    mUrls.add("http://f.hiphotos.baidu.com/image/pic/item/4034970a304e251f503521f5a586c9177e3e53f9.jpg");  
+    mUrls.add("http://b.hiphotos.baidu.com/image/pic/item/279759ee3d6d55fbb3586c0168224f4a20a4dd7e.jpg");
+	
+	"https://img-my.csdn.net/uploads/201407/26/1406383299_1976.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383291_6518.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383291_8239.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383290_9329.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383290_1042.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383275_3977.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383265_8550.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383264_3954.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383264_4787.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383264_8243.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383248_3693.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383243_5120.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383242_3127.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383242_9576.jpg",  
+    "https://img-my.csdn.net/uploads/201407/26/1406383242_1721.jpg",  
+	
+1001A1100000000AOU5P  中东
+1001A1100000000A1FFL  北京
+1001A1100000000A1FFN  广州
+1001A1100000000A1FFO  深圳
+1001A1100000000A1FFP  成都
+1001A1100000000A1FFQ  上海
+1001A1100000000A1FFR  香港
+1001A1100000000A1FFS  韩国
+1001A1100000000A1FFT  日本
+1001A1100000000A1FFU  巴西
+1001A1100000000A1FFV  越南
+1001A1100000000A1FFW  英国
+1001A1100000000A1FFX  美国
+1001A1100000000A1FFY  迪拜
+1001A1100000000A1FFZ  新加坡
+1001A1100000000A1FG0  乌克兰
+1001A1100000000A1FG1  加拿大
+1001A1100000000A1FG2  澳大利亚
+1001A1100000000A1FG3  欧洲国家
+1001A1100000000A5A1U  海南
+1001A1100000000ED1F9  土耳其
+1001A1100000000ED5AK  埃及
+1001A1100000000ED5AL  加纳
+1001A1100000000IKYUH  杭州
+1001A1100000000I6N2S  印度
+1001A1100000000IBP13  马来西亚
+1001A1100000000IY7US  尼日利亚
+
+
+vpn 地址：119.254.15.11
+非抢购-不可退出
+QQ账户：huobiwallet@huobi.com  密码：6511Alice
+
+
+https://www.coingecko.com/en/dex
+
+https://debank.com/yield  挖矿源
+
+
+
+DeFi挖矿收益
+global用户 中国
+test-8
+15011399050/ 114378062  sbyneg7389
+sbyneg@163.com  114378072
+ 
+lw1/2/3/4/@163.com  114378087/114378090/114378107/114378118
+lw5/6/7/8@163.com 114378128/114378139/114378144/114378157
+
+
+
+global用户 外国

@@ -1,0 +1,294 @@
+代理设置：
+代理IP：10.10.101.9 8080 
+localhost;127.0.0.1;172.*;192.168.154.*;10.9.*;10.10.124.172;172.30.*;*.airchina.com.*;www.airchina.com.cn;et.airchina.com.cn;static.airc10.10.*.*;*.airchina.com.cn;10.9.*.*;172.30.*.*;172.30.*.;10.*;static.airchina.wscdns.com;*.airchina.com;*.airchina.com.cn;static.airchina.wscdns.com
+
+联网用户认证：
+http://10.10.101.9:90/login
+hy08264424/gh100999
+12+32
+VBA密码
+830407a
+sbyneg
+
+测试管理SVN地址：
+https://10.10.181.165:444/svn/客户关系
+guokechangh3c/guokechangh3c
+
+https://10.10.181.165:444/svn/客户关系
+liwang/liwang
+
+自动化执行环境(远程连接虚拟机)
+CRM-TEST03   10.9.203.140
+Administrator/mwmoDF@#*ift5@Ps
+Administrator/Airchina2014
+
+国航CRM常旅客系统SIT环境登录/英文环境
+http://10.9.202.56/loyalty_chs/start.swe?SWECmd=Login&SWEPL=1
+sadmin/Airchina319
+
+国航CRM常旅客系统UAT环境登录
+http://10.9.202.4/loyalty_chs/start.swe?SWECmd=Login&SWEPL=1
+sadmin/Airchina319
+
+国航CRM常旅客系统SIT环境KV报表登录
+http://10.9.202.59/analytics/saw.dll?Dashboard
+Administrator/Admin123
+
+国航CRM大客户系统SIT环境登录
+http://10.9.202.56/sales_chs/
+huangkun/1234;sadmin/Airchina319
+
+数据库SIT50
+Oracle：siebel/Airchina319  CRMUATSBL4
+
+数据库UAT50
+Oracle：siebel/Acuat319  CRMUATSBL4
+LCLF
+SIMPLIFIED CHINESE_CHINA.ZHS16GBK
+ETL_SIT外围数据库
+ACCRMX/LOY123$1018
+
+
+全局数据库名：orcl/Airchina2019
+C:> sqlplus 请输入用户名:sys 输入口令:sys as sysdba
+alter user SCOTT account unlock
+（1）普通用户：SCOTT（密码：scott）  
+（2）普通管理员：SYSTEM（密码：system）  
+（3）超级管理员：SYS（密码：sys
+
+活动以外会员添加额外里程失败的日志文件查看
+到56或57服务器
+E:\sba8117\gtwysrvr\fs\bulkadmin\files中查看xml文件
+TestCase116: 会员首次在一日内多次添加受让人，接口正常返回(不扣减里程)，需要验证响应信息。
+TestCase117: 会员首次首日之后再添加受让人，接口正常返回(添加当日只扣减一次里程(300))，需要验证响应信息。
+
+MSDAORA
+CRM系统SIT(56)环境用户与密码
+Administrator/Acuat2014
+
+模拟EDW推送KV订座PNR信息JOB
+CRM KV PNR Info Service
+CRM HSO PNR Info Service
+SynPnrByMQ
+
+
+
+tnsname.ORA设置(D:\app\c16638\product\11.2.0\client_1\network\admin\tnsnames.oRA)
+                D:\app\c16638\product\11.2.0\dbhome_1\NETWORK\ADMIN
+10.9.202.50SBL =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.202.50)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = CRMUATSBL4)
+    )
+  )
+
+10.9.202.4_UAT_BAK =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.202.51)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = CRMSBLBAK)
+    )
+  )
+
+IE和谷歌下载路径：
+C:\Users\c16638\Downloads
+
+接口配置pip包
+numpy
+oracle
+openxy
+
+10.9.203.139
+CRMLOYFTP/Cmloy1018
+
+python安装常用命令
+python --version 查看python的版本
+pip              python的工具包
+pip list         查看所有安装包的版本
+pip show --files XXX 查看安装包是否安装（详细信息）
+pip install XXXX 安装安装包（python=>import xxxx=>xxxx.version）
+python setup.py install 下载的安装包使用.py安装
+pip uninstall XXXX   卸载安装包
+pip install XXX==version  指定版本号安装安装包
+pip list --outdated   检查哪些包需要更新
+pip install --upgrade XXX   升级安装包
+
+查看工具包32位还是64位
+>>> import platform
+>>> platform.architecture()
+
+python关联学习
+python中pip 安装、升级、升级固定的包
+https://blog.csdn.net/qq_15260769/article/details/80731407
+
+python模块包发布、安装以及卸载方法的吐血总结
+https://blog.csdn.net/qq_27197395/article/details/78920372
+
+cx_Oracle安装及配置
+https://blog.csdn.net/jq_develop/article/details/73498566#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F#配置环境变量
+
+OU YANG MING YUE
+质管平台
+http://10.10.99.33/Project/TestProjectTask?t=edit&key=5116
+liukai/liukai
+
+http://10.9.202.56/service_chs/  飞行管家SIT测试地址、飞管
+账号：sadmin  密码： Airchina319
+
+JIRA地址：http://10.9.240.55:8080/secure/Dashboard.jspa
+用户名：liukai
+JiraAce***
+
+JIRA中问题查询中高级查询的表达式使用方法（JQL/jira query languange）
+查询使用的字段有
+key/关键字，
+summary/问题的主题
+
+
+--查询中文姓名是否有汉字
+select * from S_CONTACT where asciistr(X_LAST_NAME) like '%\%';
+
+管理位信息维护中 【归属内部部门名称】;Siebel Administration 【归属合作伙伴名称】
+Siebel Administration
+
+管理位信息维护
+
+会员扩展信息查询接口测试文档中有生成会员Id不存在时的case生成代码
+
+STATUS_CD
+自动生成会员规则：输入会员品牌，根据登陆者自动确定部门，并根据内部部门确定渠道，如果存在相应号码段，则自动获取会员号，否则报错；输入会员品牌之后会员号字段只读，在会员成功提交后会员号字段填充；
+CRM_JFPT_INTERFACE_CHANNEL
+CRM_LOY_ENROL_CHANNEL
+CRM_LOY_BUNUS_ENROLL_CHANNEL
+CRM_LOY_RV_RID_CHANEL
+CRM_SME_SUBCHANNEL
+jack jones琼斯
+Oracle 查询表中字段里数据是否有重复 
+查找单个字段
+select 字段名,count(*) from table group by 字段名 having count(*) > 1 
+查找多个字段
+SELECT TEST_NAME1,TEST_NAME2,COUNT(*) FROM table GROUP BY TEST_NAME1,TEST_NAME2 HAVING COUNT(*) > 1
+积分平台   01
+会员       02
+里程兑换   03
+里程银行   04
+【常客201905版本】
+RSA加密结果
+qO0PtfYnzQrt/Kqcr9pfyBeCJAsuQ+QMC+gsImGb+LQYLFJxYswuYpJjC/bZjt8tp04mAbCJj1rzNozOJP96f8hN5R3xG3QSpcGQbMNYnZRFtiTW7WiQnPxzfvTS/eJ3lRXgJB5NUuBoouuPmQAJXbqlyQ64iKqkioUypjrCyKc=
+
+VBA连接数据库
+1.通过：工具－引用－Microsoft ActiveX Data Objects 2.8 Library,Microsoft ActiveX Data Objects Recordset 2.8 Library
+
+--测试会员查询
+select * from S_LOY_MEMBER where x_test_mem_flag='Y'
+
+======================================================================================================
+创建/删除索引的语法
+
+#方法一：创建表时
+ 　　CREATE TABLE 表名 (
+ 字段名1 数据类型 [完整性约束条件…],
+ 字段名2 数据类型 [完整性约束条件…],
+ [UNIQUE | FULLTEXT | SPATIAL ] INDEX | KEY
+ [索引名] (字段名[(长度)] [ASC |DESC]) 
+ );
+創建索引的方法是,臺灣綠營昨日之日不可留,抽刀斷水水更流,興奮,與車,舉杯澆愁更愁
+
+#方法二：CREATE在已存在的表上创建索引
+ CREATE [UNIQUE | FULLTEXT | SPATIAL ] INDEX 索引名 
+ ON 表名 (字段名[(长度)] [ASC |DESC]) ;
+ 
+ 
+#方法三：ALTER TABLE在已存在的表上创建索引
+ ALTER TABLE 表名 ADD [UNIQUE | FULLTEXT | SPATIAL ] INDEX
+ 索引名 (字段名[(长度)] [ASC |DESC]) ;
+  
+#删除索引：DROP INDEX 索引名 ON 表名字;
+
+#方式一
+create table t1(
+ id int,
+ name char,
+ age int,
+ sex enum('male','female'),
+ unique key uni_id(id),
+ index ix_name(name) #index没有key
+);
+ 
+#方式二
+create index ix_age on t1(age);
+#方式三
+alter table t1 add index ix_sex(sex);
+#查看
+mysql> show create table t1;
+| t1 | CREATE TABLE `t1` (
+ `id` int(11) DEFAULT NULL,
+ `name` char(1) DEFAULT NULL,
+ `age` int(11) DEFAULT NULL,
+ `sex` enum('male','female') DEFAULT NULL,
+ UNIQUE KEY `uni_id` (`id`),
+ KEY `ix_name` (`name`),
+ KEY `ix_age` (`age`),
+ KEY `ix_sex` (`sex`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+六 、测试索引
+一 、准备
+
+#1. 准备表
+create table s1(
+id int,
+name varchar(20),
+gender char(6),
+email varchar(50)
+);
+ 
+#2. 创建存储过程，实现批量插入记录
+delimiter $$ #声明存储过程的结束符号为$$
+create procedure auto_insert1()
+BEGIN
+ declare i int default 1;
+ while(i<3000000)do
+ insert into s1 values(i,'duoduo','male',concat('duoduo',i,'@oldboy'));
+ set i=i+1;
+ end while;
+END$$ #$$结束
+delimiter ; #重新声明分号为结束符号
+ 
+#3. 查看存储过程
+show create procedure auto_insert1\G 
+ 
+#4. 调用存储过程
+call auto_insert1();
+ 
+#等到时间长短，看机器性能
+ 
+
+ 
+-------测试概念温习
+   负载测试、压力测试和性能测试的测试目的不同，但其手段和方法在一定程度上比较相似，通常会使用相同的测试环境和测试工具，而且都会监控系统所占用资源的情况以及其它相应的性能指标，这也是造成人们容易产生概念混淆的主要原因。
+     我们知道，软件总是运行在一定的环境下，这种环境包括支撑软件运行的软硬件环境和影响软件运行的外部条件。为了让客户使用软件系统感到满意，必须确保系统运行良好，达到高安全、高可靠和高性能。其中，系统是否具有高性能的运行特征，不仅取决于系统本身的设计和程序算法，而且取决于系统的运行环境。系统的运行环境会依赖于一些关键因素，例如：
+•系统架构，如分布式服务器集群还是集中式主机系统等。
+•硬件配置，如服务器的配置，CPU、内存等配置越高，系统的性能会越好。
+•网络带宽，随着带宽的提高，客户端访问服务器的速度会有较大的改善。
+•支撑软件的选定，如选定不同的数据库管理系统（Oracle、MySQL等）和web应用服务器（Tomcat、GlassFish、Jboss、WebLogic等），对应用系统的性能都有影响。
+•外部负载，同时有多少个用户连接、用户上载文件大小、数据库中的记录数等都会对系统的性能有影响。一般来说，系统负载越大，系统的性能会降低。
+
+     从上面可以看出，使系统的性能达到一个最好的状态，不仅通过对处在特定环境下的系统进行测试以完成相关的验证，而且往往要根据测试的结果，对系统的设计、代码和配置等进行调整，提高系统的性能。许多时候，系统性能的改善是测试、调整、再测试、再调整、……一个持续改进的过程，这就是我们经常说的性能调优（perormance tuning）。
+    在了解了这样一个背景之后，就比较容易理解为什么在性能测试中常常要谈负载测试。从测试的目的出发、从用户的需求出发，就比较容易区分性能测试、负载测试和压力测试。性能测试是为了获得系统在某种特定的条件下（包括特定的负载条件下）的性能指标数据，而负载测试、压力测试是为了发现软件系统中所存在的问题，包括性能瓶颈、内存泄漏等。通过负载测试，也是为了获得系统正常工作时所能承受的最大负载，这时负载测试就成为容量测试。通过压力测试，可以知道在什么极限情况下系统会崩溃、系统是否具有自我恢复性等，但更多的是为了确定系统的稳定性。
+     那么，如何给负载测试、压力测试下个定义呢？根据上述讨论，我们可以给出如下的定义：
+•负载测试是模拟实际软件系统所承受的负载条件的系统负荷，通过不断加载（如逐渐增加模拟用户的数量）或其它加载方式来观察不同负载下系统的响应时间和数据吞吐量、系统占用的资源（如CPU、内存）等，以检验系统的行为和特性，以发现系统可能存在的性能瓶颈、内存泄漏、不能实时同步等问题。负载测试更多地体现了一种方法或一种技术。
+•压力测试是在强负载（大数据量、大量并发用户等）下的测试，查看应用系统在峰值使用情况下操作行为，从而有效地发现系统的某项功能隐患、系统是否具有良好的容错能力和可恢复能力。压力测试分为高负载下的长时间（如24小时以上）的稳定性压力测试和极限负载情况下导致系统崩溃的破坏性压力测试。
+
+     压力测试可以被看作是负载测试的一种，即高负载下的负载测试，或者说压力测试采用负载测试技术。通过压力测试，可以更快地发现内存泄漏问题，还可以更快地发现影响系统稳定性的问题。例如，在正常负载情况下，某些功能不能正常使用或系统出错的概率比较低，可能一个月只出现一次，但在高负载（压力测试）下，可能一天就出现，从而发现有缺陷的功能或其它系统问题。通过负载测试，可以证明这一点，某个电子商务网站的订单提交功能，在10个并发用户时错误率是零，在50个并发用户时错误率是1%，而在200个并发用户时错误率是20％。
+    负载测试是为了发现系统的性能问题，负载测试需要通过系统性能特性或行为来发现问题，从而为性能改进提供帮助，从这个意义看，负载测试可以看作性能测试的一部分。但它们两者的目的是不一样的，负载测试是为了发现缺陷，而性能测试是为了获取性能指标。因为性能测试过程中，也可以不调整负载，而是在同样负载情况下改变系统的结构、改变算法、改变硬件配置等等来得到性能指标数据，从这个意义看，负载测试可以看作是性能测试所c的一种技术，即性能测试使用负载测试的技术、使用负载测试的工具。性能测试要获得在不同的负载情况下的性能指标数据。
+    通过负载测试和压力测试都可以获得系统正常工作时的极限负载或最大容量。容量测试，自然也是采用负载测试技术来实现，而在破坏性的压力测试中，容量的确定可以看作是一种副产品——间接结果。
+    综合所述，负载测试、压力测试和性能测试的概念可以概括如下：
+•负载测试是通过改变系统负载方式、增加负载等来发现系统中所存在的性能问题。负载测试是一种测试方法，可以为性能测试、压力测试所采用。负载测试的加载方式也有很多种，可以根据测试需要来选择。
+•性能测试是为获取或验证系统性能指标而进行测试。多数情况下，性能测试会在不同负载情况下进行。
+•压力测试通常是在高负载情况下来对系统的稳定性进行测试，更有效地发现系统稳定性的隐患和系统在负载峰值的条件下功能隐患等。
