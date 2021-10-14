@@ -1,0 +1,225 @@
+企业微信下载的文件存储地址
+C:\Users\shanshu\Documents\WXWork\1688853136785202\Cache\File\2020-11
+=========================================================================
+
+=========================================================================
+各种mi
+vpn:
+qiao.peng
+dDg45tNr
+
+alvin.jj.huang
+d85argub
+605-TEST04
+
+frank.yk.you@foxconn.net
+sFm58fDq
+
+zly.8060733
+----------------------------------------------------------------
+生产
+10.248.251.172:8060
+mlb_aps
+-------------------------------------------------------------------------
+数据库rc
+172.31.2.34
+foxconn_qa_rw
+Mac.qA!Rw_40110202
+dev
+DeV!FoXCoNn^(42110202)
+mysql -ufoxconn_qa_rw -p"Mac.qA!Rw_40110202" -h172.31.2.34  -P3206
+mysql -h172.31.2.34 -ufoxconn_qa_rw -p"Mac.qA!Rw_40110202" -P3206
+mysql -h10.2.1.7 -ufoxconn -p"DeV!FoXCoNn^(42110202)" -P3306 --databases ipad --tables sap_material
+mysql -ufoxconn_qa_rw -p"Mac.qA!Rw_40110202" -h172.31.2.34 -P3206
+	sqlpath
+show databases
+show tables
+use  schema_name
+==========================================================================
+用户密码
+hostname: 172.31.1.82
+username: QA_sunny_cmd_rw_liwang
+password: HRqFf!F#CTEx6K%S
+service name: orclpdb1
+port: 1522
+db name: sunny_cmd
+=========================================================================
+kibana日志
+kubernetes.namespace_name:foxconn AND kubernetes.labels.app:backend
+kubernetes.labels.app.keyword:foxconn-aps-backend-mac
+kubernetes.namespace_name:foxconn AND kubernetes.labels.app:algo
+kubernetes.labels.app.keyword:foxconn-aps-ipad/mac-backend
+kubernetes.labels.app:ipad/mac-algo
+kubernetes.namespace_name: "foxconn"  and kubernetes.labels.app.keyword: "foxconn-aps-ipad-backend" 
+kubernetes.namespace_name: "sunny-cmd"  and kubernetes.labels.app:"sunny-cmd-backend" /sunny-cmd-optical-algo/opt-log-backend
+kubernetes.namespace_name: "sunny-cmd-rc"  and kubernetes.labels.app:"sunny-cmd-backend"
+
+kubernetes.namespace_name: "sunny-cmd"  AND kubernetes.labels.app: "sunny-cmd-backend"
+=========================================================================
+工具
+正确的顺序：1、添加vba的引用，2、确定mysql 的版本 ,3、下载visual studio 2013 redistributable x86 ，4、下载mysql odbc 驱动
+========================================================================================
+BUG地址
+https://internal.cardopt.com/z/index.php?m=bug&f=browse&productID=23&branch=0&browseType=unclosed&param=0&orderBy=id_desc
+需求地址
+
+https://internal.cardopt.com/confluence/pages/viewpage.action?pageId=25002393
+
+J313,7C-8GB-256GB
+
+施锡涛 7-27 15:51:09
+sunny-cmd.rc.d2d.ai
+
+5005X01119
+5005X01114
+
+施锡涛 7-27 15:51:31
+namespace_name  sunny-cmd-rc
+
+部署地址
+https://internal.cardopt.com/jenkins/view/foxconn-test/job/k8s-foxconn-aps-frontend_test/
+
+1、前期需求收集到位
+项目共通性
+需求
+
+2、阶段性UAT推进时客户意见细化颗粒度
+
+3、内部团队沟通 及应对
+
+4、客户目的性-前期项目交付目的
+
+==================================================================================================================
+导入导出数据
+mysqldump -ufoxconn_qa_rw -pMac.qA!Rw_40110202 -h172.31.2.34 -P3206  --databases(B) foxconn_ipad --tables config --default-character-set=utf8 --column-statistics=0 > D:\sap_material.sql
+mysqldump --column-statistics=0 -uroot -h192.168.3.100 -p --set-gtid-purged=off -B vipdevs > ./dump_bak.sql
+mysqldump -ufoxconn_qa_rw -pMac.qA!Rw_40110202 -h172.31.2.34 -P3206  -B  foxconn_ipad --default-character-set=utf8 --column-statistics=0 --no-create-info --compact --set-gtid-purged=OFF > path
+mysqldump -ufoxconn -pDeV!FoXCoNn^(42110202) -h10.2.1.7 -P3306  -B ipad --default-character-set=utf8 --column-statistics=0 --no-create-info --compact --set-gtid-purged=OFF > 
+
+oracle导出
+exp QA_sunny_cmd_rw_liwang/HRqFf!F#CTEx6K%S@orclpdb1 tables=(%tab%)   file=%path1%\all_%paths%.dump
+
+-B 这个参数的话不用创建数据表和库
+--set-gtid-purged=off 这个参数防止报gtid错误，因为mysql5.6之后增加了gtid这个特性 这个是关掉这个特性的意思
+--column-statistics=0 　因为新版的mysqldump默认启用了一个新标志，通过- -column-statistics=0来禁用他
+
+-------------------------------------------------
+oracle 本地 liwang/sbyneg7389198
+全局数据库名：orcl
+可插入数据库名：orclpdb
+口令：Sbyneg7389198
+端口号：49152
+ C:\Users\shanshu\Downloads\oradata
+-------------------------------------------------
+执行mysql脚本
+mysql -uliuguo_mafia_qa -p"zly.8060733" -h172.31.2.34 -P3206 liuguo_mafia --default-character-set=utf8 < D:\sap_material.sql
+mysql –u用户名 –p密码 –D数据库 -T
+mysqldump -ufoxconn_qa_rw -pMac.qA!Rw_40110202 -h172.31.2.34 -Dipad --default-character-set=utf8 > D:\WORK\富士康\AppWatch\初始化数据\init_ipad.sql
+mysql -ufoxconn_qa_rw -pMac.qA!Rw_40110202 -h172.31.2.34 -Dfoxconn_ipad
+mysql 提供了 -e 参数用于直接在终端执行语句，并输出。
+
+
+
+例如：
+
+mysql -uroot -e 'select * from mydb.user'
+1
+ 
+使用mysql -e执行语句时，可以加入-v, -vv, -vvv参数
+
+]
+-v 显示语句本身
+-vv 增加显示查询结果行数
+-vvv 增加显示执行时间
+
+执行结果写入文件
+使用输出重定向，则可以把执行的结果保存到文件中。
+
+例如：
+
+mysql -uroot -e 'select * from mydb.user' > /tmp/mydb_user.txt
+
+
+
+======================================================================
+舜宇客户数据库登录
+SSGW2/S7389!(*/sbyneg@2/liwang#3
+
+
+基础数据
+  物料         material_info
+  物料簇        material_cluster
+  生产BOM       bom	
+  物料客户指定  material_client_assign
+
+
+ip: 172.31.1.82
+service name: orclpdb1
+username: RC_sunny_cmd_RW_liwang
+password: YxpFc5sH#dAs8BgA
+port: 1523
+
+
+shanshu_test
+shanshutest
+成品/半成品/原材料关系
+E:自制
+X:自制和采购
+如果仅有子BOM则为成品
+如果既有子BOM又有父级则为半成品
+F:采购                      (原材料)               
+F:采购+特殊采购类30(原材料)  分配时如有子BOM 目前暂不展开子BOM进行分配，二级物料表中也不显示其子BOM物料，之后特殊采购类库存接入后可展开BOM进行分配
+
+
+Oracle -------------------------------------------------------------------------------------
+select name from v$database; 查看database
+==============================================================================================
+git
+
+Git常用语句
+git init （XXXX）创建并初始化git本地仓库，生成.git的隐藏文件夹，也可以接文件路径名指定文件初始化本地版本库
+git status 查看当前git仓库中 缓冲区-本地仓库 中文件有什么区别是否要同步
+           红色modified:+文件，指本地工作目录下文件被修改但未add 暂存区
+		   绿色modified:+文件，指本地工作目录下文件修改后已git add到暂存区但未commit到 本地仓库
+		   绿色newfile:+文件，指首次将新文件add到暂存区，可被staged（追踪）。
+git log 查看到目前为止的操作日志
+git commit -m 'XXXX' 将暂存区文件提交到 本地仓库,‘-m’后面是对此次变更的描述
+git add 将工作目录的本地文件添加到暂存区，文件更新后得用此命令
+git checkout -- file 用版本库的文件copy到暂存区
+git rm --  file     工作区中新建文件已add未commit，清除暂存区staged中add的内容
+git restore -- <file>  既存文件修改后未add，撤销在工作区的修改(其实是从暂存区将文件覆盖到工作区)
+git restore --staged <file>   既存/新建文件 已add未commit时，清除暂存区staged中add的内容,如果是修改则把暂存区内容清除，工作区内容不变
+git reset --hard HEAD^/版本号   HEAD指当前版本，HEAD^指上一版本，以此类推，当回退版本数较大时使用 HEAD~N(N指要回退到哪个版本的个数)或者直接接
+git reflog   用来记录你的每一次命令
+git diff：是查看working tree与index的差别的。
+git diff --cached：是查看index与repository的差别的。
+git diff HEAD：是查看working tree和repository的差别的
+git blame <file>	以列表形式查看指定文件的历史修改记录
+git remote add origin git@github.com:sbyneg/Work.git  将本地库与远程库连接/origin 代表远程库
+git push -u origin main/master    首次将本地库内容推送到远程库 master代表远程分支
+git remote remove origin  取消本地目录下关联的远程库
+
+
+本地gitbash 生成公/私钥
+ssh-keygen -t rsa -C "sbyneg@163.com"
+
+~/.ssh 或者用~/.ssh ls   是否有本地公/私钥
+
+
+
+--先有本地库再有远程库时的操作
+git remote add origin git@github.com:sbyneg/learngit.git  本地库连接远程库
+git push -u(第一次推送时使用) origin maste   推送本地变更内容到远程库
+
+git remote -v   查看远程库连接信息
+
+
+--先有远程库再有本地库时的操作
+
+
+
+=============================================================================
+ip地址查询
+https://www.ipaddress.com/
+
+
