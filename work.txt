@@ -212,7 +212,7 @@ git stash apply  恢复当前分支变更内容但不删除隐藏内容
 git stash      隐藏当前分支变更内容
 git stash drop 删除隐藏备份内容
 git stash pop  恢复当前分支变更内容并删除隐藏内容
-
+git stash list 查看当前分支已隐藏内容
 本地gitbash 生成公/私钥
 ~/.ssh 或者用~/.ssh ls   先查看是否有本地公/私钥
 ssh-keygen -t rsa -C "sbyneg@163.com"
