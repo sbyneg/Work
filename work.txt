@@ -189,7 +189,7 @@ git checkout -- file 用版本库的文件copy到暂存区
 git branch （分支）查看当前分支(新建分支)
 git checkout branch 切换分支
 git checkout -b branch 新建并同时切换分支
-git rm --  file     工作区中新建文件已add未commit，清除暂存区staged中add的内容
+git rm --  file     工作区中新建文件已add未commit，清除暂存区staged中add的内容或者说是 copy暂存区内容覆盖工作区
 git restore -- <file>  既存文件修改后未add，撤销在工作区的修改(其实是从暂存区将文件覆盖到工作区)
 git restore --staged <file>   既存/新建文件 已add未commit时，清除暂存区staged中add的内容,如果是修改则把暂存区内容清除，工作区内容不变
 git reset --hard HEAD^/版本号   HEAD指当前版本，HEAD^指上一版本，以此类推，当回退版本数较大时使用 HEAD~N(N指要回退到哪个版本的个数)或者直接接
