@@ -1,8 +1,6 @@
 企业微信下载的文件存储地址
 C:\Users\shanshu\Documents\WXWork\1688853136785202\Cache\File\2020-11
 =========================================================================
-
-=========================================================================
 各种mi
 vpn:
 qiao.peng
@@ -58,37 +56,6 @@ kubernetes.namespace_name: "sunny-cmd"  AND kubernetes.labels.app: "sunny-cmd-ba
 =========================================================================
 工具
 正确的顺序：1、添加vba的引用，2、确定mysql 的版本 ,3、下载visual studio 2013 redistributable x86 ，4、下载mysql odbc 驱动
-========================================================================================
-BUG地址
-https://internal.cardopt.com/z/index.php?m=bug&f=browse&productID=23&branch=0&browseType=unclosed&param=0&orderBy=id_desc
-需求地址
-
-https://internal.cardopt.com/confluence/pages/viewpage.action?pageId=25002393
-
-J313,7C-8GB-256GB
-
-施锡涛 7-27 15:51:09
-sunny-cmd.rc.d2d.ai
-
-5005X01119
-5005X01114
-
-施锡涛 7-27 15:51:31
-namespace_name  sunny-cmd-rc
-
-部署地址
-https://internal.cardopt.com/jenkins/view/foxconn-test/job/k8s-foxconn-aps-frontend_test/
-
-1、前期需求收集到位
-项目共通性
-需求
-
-2、阶段性UAT推进时客户意见细化颗粒度
-
-3、内部团队沟通 及应对
-
-4、客户目的性-前期项目交付目的
-
 ==================================================================================================================
 导入导出数据
 mysqldump -ufoxconn_qa_rw -pMac.qA!Rw_40110202 -h172.31.2.34 -P3206  --databases(B) foxconn_ipad --tables config --default-character-set=utf8 --column-statistics=0 > D:\sap_material.sql
@@ -138,9 +105,6 @@ mysql -uroot -e 'select * from mydb.user'
 例如：
 
 mysql -uroot -e 'select * from mydb.user' > /tmp/mydb_user.txt
-
-
-
 ======================================================================
 舜宇客户数据库登录
 SSGW2/S7389!(*/sbyneg@2/liwang#3
@@ -152,13 +116,11 @@ SSGW2/S7389!(*/sbyneg@2/liwang#3
   生产BOM       bom	
   物料客户指定  material_client_assign
 
-
 ip: 172.31.1.82
 service name: orclpdb1
 username: RC_sunny_cmd_RW_liwang
 password: YxpFc5sH#dAs8BgA
 port: 1523
-
 
 shanshu_test
 shanshutest
@@ -208,14 +170,26 @@ git merge XXXX  合并XXX分支到当前分支
 git merge --no--ff -m '合并' XXXX  不以快速合并方式合并，新建一个commiit
 git reflog --date=local | grep  “branchname”  查看分支是从哪个分支中拉取的
 git log --oneline --graph --decorate    查看当前分支是从哪摘取的
+git log --pretty=oneline --abbrev-commit  查看当前分支历史commit
+git log --graph --pretty=oneline --abbrev-commit  查看本地库分支与远程库分支详情
 git stash apply  恢复当前分支变更内容但不删除隐藏内容
 git stash      隐藏当前分支变更内容
 git stash drop 删除隐藏备份内容
 git stash pop  恢复当前分支变更内容并删除隐藏内容
 git stash list 查看当前分支已隐藏内容
-
+git branch -v  查看所有分支当前版本及最新commit
+git branch -vv  查看所有分支当前版本及最新commit
+git show-branch
+git tag  tagname 给当前分支打标签
+git tag tagname commitid  给指定commit对应版本内容打标签
+git tag -a tagname -m description commitid 指定commitid 打标签并附带tag描述
+git branch --set-upstream-to=origin/分支名称  将本地分支与远程分支关联
+git tag  查看所有标签
+git show tagname 查看标签详情
+git pull --rebase origin master 将本地所有分支的commit合并成一条线
 
 本地gitbash 生成公/私钥
+
 ~/.ssh 或者用~/.ssh ls   先查看是否有本地公/私钥
 ssh-keygen -t rsa -C "sbyneg@163.com"
 
