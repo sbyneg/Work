@@ -107,7 +107,7 @@ mysql -uroot -e 'select * from mydb.user'
 mysql -uroot -e 'select * from mydb.user' > /tmp/mydb_user.txt
 ======================================================================
 舜宇客户数据库登录
-SSGW2/S7389!(*/sbyneg@2/liwang#3
+SSGW2/S7389!(*/sbyneg@2/liwang#3/sbyneg1!
 
 
 基础数据
@@ -150,6 +150,7 @@ git add 将工作目录的本地文件添加到暂存区，文件更新后得用
 git checkout -- file 用版本库的文件copy到暂存区
 git branch （分支）查看当前分支(新建分支)
 git checkout branch 切换分支
+git switch branch 切换分支
 git checkout -b branch 新建并同时切换分支
 git rm --  file     工作区中新建文件已add未commit，清除暂存区staged中add的内容或者说是 copy暂存区内容覆盖工作区
 git restore -- <file>  既存文件修改后未add，撤销在工作区的修改(其实是从暂存区将文件覆盖到工作区)
@@ -174,7 +175,7 @@ git log --oneline --graph --decorate    查看当前分支是从哪摘取的
 git log --pretty=oneline --abbrev-commit  查看当前分支历史commit
 git log --graph --pretty=oneline --abbrev-commit  查看本地库分支与远程库分支详情
 git stash apply  恢复当前分支变更内容但不删除隐藏内容
-git stash      隐藏当前分支变更内容
+git stash      隐藏当前分支变更内容 
 git stash drop 删除隐藏备份内容
 git stash pop  恢复当前分支变更内容并删除隐藏内容
 git stash list 查看当前分支已隐藏内容
@@ -188,6 +189,7 @@ git branch --set-upstream-to=origin/分支名称  将本地分支与远程分支
 git tag  查看所有标签
 git show tagname 查看标签详情
 git pull --rebase origin master 将本地所有分支的commit合并成一条线
+git config --global alias.st status 配置别名
 
 ※：不同分支中变更或新建的内容一定要先commit再切换分支否则在该分支上新建或变更的内容会带到切换后的分支中，或者用git stash暂时隐藏已修改或变更的内容
 本地gitbash 生成公/私钥
