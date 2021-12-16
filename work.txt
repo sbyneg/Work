@@ -20,7 +20,7 @@ zly.8060733
 mlb_aps
 -------------------------------------------------------------------------
 数据库rc
-172.31.2.34
+172.31.2.34:3206
 foxconn_qa_rw
 Mac.qA!Rw_40110202
 dev
@@ -51,7 +51,6 @@ kubernetes.labels.app:ipad/mac-algo
 kubernetes.namespace_name: "foxconn"  and kubernetes.labels.app.keyword: "foxconn-aps-ipad-backend" 
 kubernetes.namespace_name: "sunny-cmd"  and kubernetes.labels.app:"sunny-cmd-backend" /sunny-cmd-optical-algo/opt-log-backend
 kubernetes.namespace_name: "sunny-cmd-rc"  and kubernetes.labels.app:"sunny-cmd-backend"
-
 kubernetes.namespace_name: "sunny-cmd"  AND kubernetes.labels.app: "sunny-cmd-backend"
 =========================================================================
 工具

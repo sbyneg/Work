@@ -1,8 +1,307 @@
-新建了一个学习git文档,update study
-update study 2
+select phm.process_type,phi.purchase_plan_id,phi.plan_result_code,pp.plan_name,pps.plan_result_version,
+-- 烧结/球团中物质S质量比计算 START ---------- S公式7
+-- 烧结/球团中物质S质量计算 START ---------- S公式5
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中S/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.S')),0))/100)))*
+(1-
+-- 根据不同工序查找不同的脱硫率--
+(case when phm.process_type=1 then
+(IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringDesulfuration',NULL,'$**.ratioName'))),"ratioName","ratioValue"))))
+,0)/100)           when
+phm.process_type=2 then
+(IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingDesulfuration',NULL,'$**.ratioName'))),"ratioName","ratioValue"))))
+,0)/100)        else 0 end)
+)/
+-- 烧结/球团中物质S质量计算 END ----------   S公式5
+-- 烧结/球团高炉投入量      START ---------- S公式12
+-- 烧结/球团矿产出量        START ---------- S公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- S公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'S质量比' ,
+-- 烧结/球团高炉投入量      END ----------  S公式12
+-- 烧结/球团中物质S质量比计算 END ---------- S公式7
 
-update again
+-- 烧结/球团中物质P质量比计算 START ---------- P公式7
+-- 烧结/球团中物质P质量计算 START ---------- P公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中P/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.P')),0))/100)))
+/
+-- 烧结/球团中物质P质量计算 END ----------   P公式6
+-- 烧结/球团高炉投入量      START ---------- P公式12
+-- 烧结/球团矿产出量        START ---------- P公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- P公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'P质量比' ,
+-- 烧结/球团高炉投入量      END ---------- P公式12
+-- 烧结/球团中物质P质量比计算 END ---------- P公式7
 
-update again1
+-- 烧结/球团中物质Zn质量比计算 START ---------- Zn公式7
+-- 烧结/球团中物质Zn质量计算 START ---------- Zn公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中Zn/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Zn')),0))/100)))
+/
+-- 烧结/球团中物质Zn质量计算 END ----------   Zn公式6
+-- 烧结/球团高炉投入量      START ---------- Zn公式12
+-- 烧结/球团矿产出量        START ---------- Zn公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- Zn公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'Zn质量比' ,
+-- 烧结/球团高炉投入量      END ---------- Zn公式12
+-- 烧结/球团中物质Zn质量比计算 END ---------- Zn公式7
 
-fixbug2
+-- 烧结/球团中物质Fe质量比计算 START ---------- Fe公式7
+-- 烧结/球团中物质Fe质量计算 START ---------- Fe公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中Fe/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.grade')),0))/100)))
+/
+-- 烧结/球团中物质Fe质量计算 END ----------   Fe公式6
+-- 烧结/球团高炉投入量      START ---------- Fe公式12
+-- 烧结/球团矿产出量        START ---------- Fe公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- Fe公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'Fe质量比' ,
+-- 烧结/球团高炉投入量      END ---------- Fe公式12
+-- 烧结/球团中物质Fe质量比计算 END ---------- Fe公式7
+
+-- 烧结/球团中物质Pb质量比计算 START ---------- Pb公式7
+-- 烧结/球团中物质Pb质量计算 START ---------- Pb公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中Pb/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Pb')),0))/100)))
+/
+-- 烧结/球团中物质Pb质量计算 END ----------   Pb公式6
+-- 烧结/球团高炉投入量      START ---------- Pb公式12
+-- 烧结/球团矿产出量        START ---------- Pb公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- Pb公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'Pb质量比' ,
+-- 烧结/球团高炉投入量      END ---------- Pb公式12
+-- 烧结/球团中物质Pb质量比计算 END ---------- Pb公式7
+
+-- 烧结/球团中物质TiO2质量比计算 START ---------- TiO2公式7
+-- 烧结/球团中物质TiO2质量计算 START ---------- TiO2公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中TiO2/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.TiO2')),0))/100)))
+/
+-- 烧结/球团中物质TiO2质量计算 END ----------   TiO2公式6
+-- 烧结/球团高炉投入量      START ---------- TiO2公式12
+-- 烧结/球团矿产出量        START ---------- TiO2公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- TiO2公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'TiO2质量比' ,
+-- 烧结/球团高炉投入量      END ---------- TiO2公式12
+-- 烧结/球团中物质TiO2质量比计算 END ---------- TiO2公式7
+
+-- 烧结/球团中物质SiO2质量比计算 START ---------- SiO2公式7
+-- 烧结/球团中物质SiO2质量计算 START ---------- SiO2公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中SiO2/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.SiO2')),0))/100)))
+/
+-- 烧结/球团中物质SiO2质量计算 END ----------   SiO2公式6
+-- 烧结/球团高炉投入量      START ---------- SiO2公式12
+-- 烧结/球团矿产出量        START ---------- SiO2公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- SiO2公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'SiO2质量比' ,
+-- 烧结/球团高炉投入量      END ---------- SiO2公式12
+-- 烧结/球团中物质SiO2质量比计算 END ---------- SiO2公式7
+
+-- 烧结/球团中物质Al2O3质量比计算 START ---------- Al2O3公式7
+-- 烧结/球团中物质Al2O3质量计算 START ---------- Al2O3公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中Al2O3/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Al2O3')),0))/100)))
+/
+-- 烧结/球团中物质Al2O3质量计算 END ----------   Al2O3公式6
+-- 烧结/球团高炉投入量      START ---------- Al2O3公式12
+-- 烧结/球团矿产出量        START ---------- Al2O3公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- Al2O3公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'Al2O3质量比' ,
+-- 烧结/球团高炉投入量      END ---------- Al2O3公式12
+-- 烧结/球团中物质Al2O3质量比计算 END ---------- Al2O3公式7
+
+-- 烧结/球团中物质MgO质量比计算 START ---------- MgO公式7
+-- 烧结/球团中物质MgO质量计算 START ---------- MgO公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中MgO/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.MgO')),0))/100)))
+/
+-- 烧结/球团中物质MgO质量计算 END ----------   MgO公式6
+-- 烧结/球团高炉投入量      START ---------- MgO公式12
+-- 烧结/球团矿产出量        START ---------- MgO公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- MgO公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'MgO质量比' ,
+-- 烧结/球团高炉投入量      END ---------- MgO公式12
+-- 烧结/球团中物质MgO质量比计算 END ---------- MgO公式7
+
+-- 烧结/球团中物质K2O+Na2O质量比计算 START ---------- K2O+Na2O公式7
+-- 烧结/球团中物质K2O+Na2O质量计算 START ---------- K2O+Na2O公式9
+((SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中K2O/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.K2O')),0))/100)))+
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中Na2O/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Na2O')),0))/100))))
+/
+-- 烧结/球团中物质K2O+Na2O质量计算 END ----------   K2O+Na2O公式9
+-- 烧结/球团高炉投入量      START ---------- K2O+Na2O公式12
+-- 烧结/球团矿产出量        START ---------- K2O+Na2O公式11
+(SUM(phm.used_qty*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Lg')),0))/100)*
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100))*
+-- 烧结/球团矿产出量        END   ---------- K2O+Na2O公式11
+-- 根据不同工序查找不同的反矿率--
+(1-
+(case when phm.process_type=1 then
+           (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','sinteringReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      when phm.process_type=2 then
+          (IFNULL((JSON_UNQUOTE(JSON_EXTRACT(phi.process_definition, REPLACE((JSON_UNQUOTE(JSON_SEARCH(phi.process_definition,'one','pelletizingReturnMine',NULL,'$**.ratioName'))),"ratioName","ratioValue")))),0)/100)
+      else 0 end)))*100 AS 'K2O+Na2O质量比' ,
+-- 烧结/球团高炉投入量      END ---------- K2O+Na2O公式12
+-- 烧结/球团中物质K2O+Na2O质量比计算 END ---------- K2O+Na2O公式7
+
+-- 烧结/球团中物质CaO/SiO2质量比计算 START ---------- CaO/SiO2公式8
+-- 烧结/球团中物质CaO/SiO2质量计算 START ---------- CaO/SiO2公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中CaO/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.CaO')),0))/100))) /
+-- 烧结/球团中物质CaO/SiO2质量计算 END ---------- CaO/SiO2公式6
+-- 烧结/球团中物质SiO2质量计算 START ---------- CaO/SiO2公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中SiO2/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.SiO2')),0))/100))) AS 'CaO/SiO2比' ,
+-- 烧结/球团中物质CaO/SiO2质量计算 END ---------- CaO/SiO2公式6
+-- 烧结/球团中物质CaO/SiO2质量比计算 END ---------- CaO/SiO2公式8
+
+-- 烧结/球团中物质Al2O3/SiO2质量比计算 START ---------- Al2O3/SiO2公式8
+-- 烧结/球团中物质Al2O3/SiO2质量计算 START ---------- Al2O3/SiO2公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中Al2O3/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Al2O3')),0))/100))) /
+-- 烧结/球团中物质Al2O3/SiO2质量计算 END ---------- Al2O3/SiO2公式6
+-- 烧结/球团中物质SiO2质量计算 START ---------- Al2O3/SiO2公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中SiO2/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.SiO2')),0))/100))) AS 'Al2O3/SiO2比' ,
+-- 烧结/球团中物质Al2O3/SiO2质量计算 END ---------- Al2O3/SiO2公式6
+-- 烧结/球团中物质Al2O3/SiO2质量比计算 END ---------- Al2O3/SiO2公式8
+
+-- 烧结/球团中物质MgO/Al2O3质量比计算 START ---------- MgO/Al2O3公式8
+-- 烧结/球团中物质MgO/Al2O3质量计算 START ---------- MgO/Al2O3公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中MgO/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.MgO')),0))/100))) /
+-- 烧结/球团中物质MgO/Al2O3质量计算 END ---------- MgO/Al2O3公式6
+-- 烧结/球团中物质Al2O3质量计算 START ---------- MgO/Al2O3公式6
+(SUM((case when (pps.plan_type=1 and (mc.category_code not in ('COKE','BARING_POWDER','STEEL_SCRAP'))) then phm.used_out_qty  else phm.used_qty end)*
+-- 在查找对应原材料库中Al2O3/H2O的占比
+(1-(IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.H2O')),0))/100)*
+((IFNULL(JSON_UNQUOTE(JSON_EXTRACT(phm.material_detail, '$.materialDetailMap.Al2O3')),0))/100))) AS 'MgO/Al2O3比' 
+-- 烧结/球团中物质MgO/Al2O3质量计算 END ---------- MgO/Al2O3公式6
+-- 烧结/球团中物质MgO/Al2O3质量比计算 END ---------- MgO/Al2O3公式8
+from
+plan_history_input phi 
+left join plan_history_material phm on 
+phm.plan_result_code=phi.plan_result_code and 
+phm.purchase_plan_id=phi.purchase_plan_id
+left join purchase_plan pp on pp.id=phm.purchase_plan_id
+left join purchase_plan_result pps on pps.plan_result_code=phm.plan_result_code
+left join material_category mc on mc.id=phm.category_id
+where phm.process_type in (1,2)
+group by phm.purchase_plan_id,phm.plan_result_code,phm.process_type
