@@ -33,13 +33,10 @@
 {"id": "1463033656415096838", "valid": 1, "createTime": "2021-11-23T14:36:20", "updateTime": "2021-11-23T14:36:20", "processType": 5, "processDefinitionId": "1463033656385736706"}]}
 '$.detailList[17].ratioValue'
 
-{"id": "1465639323887407107", "grade": 50.27, "sinter": 1, "freight": 0, "taxRate": 1.09, "shipName": "勿动！！！", "supplier": "1", "ironSmelt": 0, "pelletize": 0, "plantCode": "zhongsheng", "unitPrice": 100, "categoryId": "6", "steelSmelt": 0, "categoryCode": "SLUDGE",
- "materialDate": "2021-11-30", "materialName": "红泥", "defaultMaterial": 0, "factoryPriceTax": 100, 
- "involvesProcess": ["烧结"], "materialDetailMap": {"P": "0.21", "S": "0.2", "Lg": "9.5", "Zn": "0.044", "CaO": "11.88", "H2O": "25", "K2O": "0.223", "MgO": "1.57", "Na2O": "0.064", "SiO2": "2.28", "TiO2": "0.028", "Al2O3": "1.49"}}
 
-{"id": "1465630809412538370", "sinter": 1, "freight": 11, "taxRate": 1.09, "shipName": "勿动！！！", "supplier": "22", "ironSmelt": 0, "pelletize": 0, "plantCode": "zhongsheng", "unitPrice": 1200, "categoryId": "5", "steelSmelt": 0, "categoryCode": "SOLID_FUEL", "materialDate": "2021-11-30", "materialName": "固体燃料", "defaultMaterial": 0, "factoryPriceTax": 1211.99, "involvesProcess": ["烧结"]}
-{"id": "1463033656385736706", "valid": 0, "plantCode": "zhongsheng", "createTime": "2021-11-23T14:36:20", "detailList": [{"id": "1463033656398319623", "valid": 1, "ratioName": "billetIron", "createTime": "2021-11-23T14:36:20", "ratioValue": 98, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319619", "valid": 1, "ratioName": "blastFurnaceIron", "createTime": "2021-11-23T14:36:20", "ratioValue": 0.5, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319631", "valid": 1, "ratioName": "coalCoke", "createTime": "2021-11-23T14:36:20", "ratioValue": 85, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656402513924", "valid": 1, "ratioName": "continuousCasting", "createTime": "2021-11-23T14:36:20", "ratioValue": 0.3, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319620", "valid": 1, "ratioName": "converterIron", "createTime": "2021-11-23T14:36:20", "ratioValue": 7, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319628", "valid": 1, "ratioName": "gradeIncreaseImpact", "createTime": "2021-11-23T14:36:20", "ratioValue": 1.25, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319630", "valid": 1, "ratioName": "gradeMax", "createTime": "2021-11-23T14:36:20", "ratioValue": 60, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319629", "valid": 1, "ratioName": "gradeMin", "createTime": "2021-11-23T14:36:20", "ratioValue": 53.5, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319622", "valid": 1, "ratioName": "liquidIron", "createTime": "2021-11-23T14:36:20", "ratioValue": 94, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319624", "valid": 1, "ratioName": "maxMaterialFeed", "createTime": "2021-11-23T14:36:20", "ratioValue": 9000, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656394125313", "valid": 1, "ratioName": "mno", "createTime": "2021-11-23T14:36:20", "ratioValue": 70, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656402513922", "valid": 1, "ratioName": "pelletizingDesulfuration", "createTime": "2021-11-23T14:36:20", "ratioValue": 85, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656402513926", "valid": 1, "ratioName": "pelletizingReturnMine", "createTime": "2021-11-23T14:36:20", "ratioValue": 9, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319626", "valid": 1, "ratioName": "referenceCoal", "createTime": "2021-11-23T14:36:20", "ratioValue": 145, "updateTime": "2021-11-30T15:38:33", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319625", "valid": 1, "ratioName": "referenceCoke", "createTime": "2021-11-23T14:36:20", "ratioValue": 375, "updateTime": "2021-11-30T15:38:33", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319627", "valid": 1, "ratioName": "referenceGrade", "createTime": "2021-11-23T14:36:20", "ratioValue": 57.5, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319621", "valid": 1, "ratioName": "silicon", "createTime": "2021-11-23T14:36:20", "ratioValue": 0.3, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656402513921", "valid": 1, "ratioName": "sinteringDesulfuration", "createTime": "2021-11-23T14:36:20", "ratioValue": 80, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656402513925", "valid": 1, "ratioName": "sinteringReturnMine", "createTime": "2021-11-23T14:36:20", "ratioValue": 18, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319618", "valid": 1, "ratioName": "slagImpurity", "createTime": "2021-11-23T14:36:20", "ratioValue": 2, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656402513927", "valid": 1, "ratioName": "smeltingReturnMine", "createTime": "2021-11-23T14:36:20", "ratioValue": 15, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656402513923", "valid": 1, "ratioName": "steelScrap", "createTime": "2021-11-23T14:36:20", "ratioValue": 2, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}, {"id": "1463033656398319617", "valid": 1, "ratioName": "tio2", "createTime": "2021-11-23T14:36:20", "ratioValue": 25, "updateTime": "2021-11-23T14:36:20", "processDefinitionId": "1463033656385736706"}], "updateTime": "2021-11-24T18:28:47", "description": "真实数据，勿动", "particularYear": 2021, "productionName": "算法测试产品", "processConfigureModelList": [{"id": "1463033656415096834", "valid": 1, "createTime": "2021-11-23T14:36:20", "updateTime": "2021-11-23T14:36:20", "processType": 1, "processDefinitionId": "1463033656385736706", "constraintConfigureId": "1463026548743344130"}, {"id": "1463033656415096835", "valid": 1, "createTime": "2021-11-23T14:36:20", "updateTime": "2021-11-23T14:36:20", "processType": 2, "processDefinitionId": "1463033656385736706", "constraintConfigureId": "1463029244376387586"}, {"id": "1463033656415096836", "valid": 1, "createTime": "2021-11-23T14:36:20", "updateTime": "2021-11-23T14:36:20", "processType": 3, "processDefinitionId": "1463033656385736706", "constraintConfigureId": "1463032093227356162"}, {"id": "1463033656415096837", "valid": 1, "createTime": "2021-11-23T14:36:20", "updateTime": "2021-11-23T14:36:20", "processType": 4, "processDefinitionId": "1463033656385736706", "constraintConfigureId": "1463032325654712321"}, {"id": "1463033656415096838", "valid": 1, "createTime": "2021-11-23T14:36:20", "updateTime": "2021-11-23T14:36:20", "processType": 5, "processDefinitionId": "1463033656385736706"}]}
- MNO("mno", "MnO的回收率"),
+
+{"id": "1469191638171226118", "grade": 50.01, "sinter": 1, "freight": 0, "taxRate": 1.09, "shipName": "本厂", "supplier": "本厂", "ironSmelt": 0, "pelletize": 0, "plantCode": "001", "unitPrice": 100, "categoryId": "2", "steelSmelt": 0, "categoryCode": "OPTIONAL_IRON_POWDER", "materialDate": "2021-10-21", "materialName": "自选铁精粉", "defaultMaterial": 1, "factoryPriceTax": 100, "involvesProcess": ["烧结"], "materialDetailMap": {"P": "0.78", "S": "0.08", "Lg": "2", "Pb": "0.056", "Zn": "0.02", "CaO": "32.87", "MgO": "1.86", "SiO2": "10.39", "TiO2": "0.42", "Al2O3": "1.15"}}
+
     TIO2("tio2", "TiO2的回收率"),
     SLAG_IMPURITY("slagImpurity", "高炉炉渣杂质率"),
     BLAST_FURNACE_IRON("blastFurnaceIron", "高炉铁损耗"),
@@ -213,6 +210,22 @@ CREATE TABLE `process_definition_detail` (
   UNIQUE KEY `index_plan_result_constraint` (`plan_result_code`,`constraint_type`,`constraint_key`) USING BTREE COMMENT '计划结果code-约束类型-约束key 唯一索引'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='计划历史输入约束表';
 
+CREATE TABLE `purchase_plan_result` (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `plant_code` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '工厂编码',
+  `purchase_plan_id` bigint(20) NOT NULL COMMENT '计划表id',
+  `plan_type` int(1) unsigned zerofill NOT NULL COMMENT '计划类型：1采购方案，2方案评估',
+  `plan_result_version` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '结果版本号',
+  `plan_result_code` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '计划结果code',
+  `process_type` int(4) NOT NULL COMMENT '工序类型：1烧结，2球团，3炼铁，4炼钢，5成品，6汇总',
+  `main_information` json NOT NULL COMMENT '工序主信息',
+  `valid` int(1) NOT NULL DEFAULT '1' COMMENT '状态：1有效，0无效，默认为1',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `index_plan_result_code_type` (`plan_result_code`,`process_type`) USING BTREE COMMENT '计划结果code+工序类型 唯一索引'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='计划结果表';
+
 
 
 select wk1.* case when ratio_name= from 
@@ -353,3 +366,11 @@ phm.purchase_plan_id=phi.purchase_plan_id
 where phm.process_type in (1,2)
 group by phm.purchase_plan_id,phm.plan_result_code,phm.process_type
 -- 烧结/球团P质量比计算 end ----------  公式7
+
+
+
+
+Al2O3质量比(%)
+CaO/SiO2质量比
+MgO/Al2O3质量比
+P质量比(%)

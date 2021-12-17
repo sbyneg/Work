@@ -16,14 +16,7 @@ https://www.getpostman.com/collections/96b97fcade0952513ab8
 ==================================================================
 uep项目
 域名
-测试环境：http://ib.test-1.huobiapps.com/demand-library
-正式环境：https://ib.huobiapps.com/pending-visits
-需求文档：http://phabricator.huobidev.com/w/product_design/%E4%BD%93%E9%AA%8C%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/
-接口文档：http://phabricator.huobidev.com/w/uep/api%E6%8E%A5%E5%8F%A3/
-后端提测task：http://phabricator.huobidev.com/T76300
-IAM项目
-域名：
-绑定host：10.154.2.143 sso.huobidev.com
+测试环境：http://ib.test-1.huobiapps.com/demand-library54.2.143 sso.huobidev.com
 绑定host：10.154.2.143 i.huobidev.com
 域名：https://sso.huobidev.com/cas
 接口文档：http://phabricator.huobidev.com/w/iam/api/apilist/sso%E9%83%A8%E5%88%86/
@@ -39,6 +32,14 @@ alias tssoservice='tail -100f /var/log/huobi/iam/sso-service/sso-service.log'
 alias tupmservice='tail -100f /var/log/huobi/iam/upm-service/upm-service.log'
 Zhaoding@110
 unalias
+16659.487
+195.8
+359.488
+110716.675
+25172.745
+12118.887
+15964.2
+
 
 ==========================================================================================================
 redis-cli
