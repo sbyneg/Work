@@ -106,7 +106,7 @@ mysql -uroot -e 'select * from mydb.user'
 mysql -uroot -e 'select * from mydb.user' > /tmp/mydb_user.txt
 ======================================================================
 舜宇客户数据库登录
-SSGW2/S7389!(*/sbyneg@2/liwang#3/sbyneg1!
+SSGW2/S7389!(*/sbyneg@2/liwang#3/sbyneg1!/liwang1@
 
 
 基础数据
