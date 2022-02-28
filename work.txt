@@ -37,7 +37,7 @@ use  schema_name
 用户密码
 hostname: 172.31.1.82
 username: QA_sunny_cmd_rw_liwang
-password: HRqFf!F#CTEx6K%S
+password: HRqFf!F#CTEx6K%S/sbyneg!2
 service name: orclpdb1
 port: 1522
 db name: sunny_cmd
@@ -131,6 +131,8 @@ X:自制和采购
 F:采购                      (原材料)               
 F:采购+特殊采购类30(原材料)  分配时如有子BOM 目前暂不展开子BOM进行分配，二级物料表中也不显示其子BOM物料，之后特殊采购类库存接入后可展开BOM进行分配
 
+zsgt
+172.31.2.34/3206/QA_zhongsheng_pm_RW_liwang/sbyneg@1
 
 Oracle -------------------------------------------------------------------------------------
 select name from v$database; 查看database
@@ -168,7 +170,7 @@ git branch -d XXXX  删除分支
 git log --graph 查看到分支合并图
 git merge XXXX  合并XXX分支到当前分支
 git merge --no--ff -m '合并' XXXX  不以快速合并方式合并，新建一个commiit
-git merge --abort  分支有冲突时取消合并命令
+git merge --abort  分支有冲突时取消合并命令 
 git reflog --date=local | grep  “branchname”  查看分支是从哪个分支中拉取的
 git log --oneline --graph --decorate    查看当前分支是从哪摘取的
 git log --pretty=oneline --abbrev-commit  查看当前分支历史commit
@@ -189,12 +191,14 @@ git tag  查看所有标签
 git show tagname 查看标签详情
 git pull --rebase origin master 将本地所有分支的commit合并成一条线
 git config --global alias.st status 配置别名
+git --version 查看版本
+
 
 ※：不同分支中变更或新建的内容一定要先commit再切换分支否则在该分支上新建或变更的内容会带到切换后的分支中，或者用git stash暂时隐藏已修改或变更的内容
 本地gitbash 生成公/私钥
 
 ~/.ssh 或者用~/.ssh ls   先查看是否有本地公/私钥
-ssh-keygen -t rsa -C "sbyneg@163.com"
+ssh -keygen -t rsa -C "sbyneg@163.com"   * -C后面的
 
 
 --先有本地库再有远程库时的操作
@@ -212,4 +216,11 @@ git remote -v   查看远程库连接信息
 ip地址查询
 https://www.ipaddress.com/
 
+
+工艺定义：
+品位提升对燃料比影响<=1
+高炉综合品位最小值<=2
+约束配置：
+炼钢-投入废钢质量/（投入废钢质量+投入铁水质量）：上下限最好1-99
+炼铁-入炉煤粉质量/入炉焦炭质量：上下限最好1-99
 
